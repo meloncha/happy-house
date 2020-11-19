@@ -6,6 +6,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
@@ -31,8 +32,8 @@ public class HouseMapController {
 		return new ResponseEntity<>(list, HttpStatus.OK);
 	}
 	
-	@GetMapping(value="/gugun", produces="application/json;charset=utf-8")
-	public ResponseEntity<List<SidoGugunCodeDto>> gugun(@RequestBody String sido) {
+	@GetMapping(value="/gugun/{sido}", produces="application/json;charset=utf-8")
+	public ResponseEntity<List<SidoGugunCodeDto>> gugun(@PathVariable("sido") String sido) {
 		List<SidoGugunCodeDto> list = hmService.getGugunInSido(sido);
 		
 		if (list == null) {
@@ -41,8 +42,8 @@ public class HouseMapController {
 		return new ResponseEntity<>(list, HttpStatus.OK);
 	}
 	
-	@GetMapping(value="/dong", produces="application/json;charset=utf-8")
-	public ResponseEntity<List<HouseInfoDto>> dong(@RequestBody String gugun) {
+	@GetMapping(value="/dong/{gugun}", produces="application/json;charset=utf-8")
+	public ResponseEntity<List<HouseInfoDto>> dong(@PathVariable("gugun") String gugun) {
 		List<HouseInfoDto> list = hmService.getDongInGugun(gugun);
 		
 		if (list == null) {
@@ -51,9 +52,20 @@ public class HouseMapController {
 		return new ResponseEntity<>(list, HttpStatus.OK);
 	}
 
-	@GetMapping(value="/apt", produces="application/json;charset=utf-8")
-	public ResponseEntity<List<HouseInfoDto>> apt(@RequestBody String dong) {
+	@GetMapping(value="/apt/{dong}", produces="application/json;charset=utf-8")
+	public ResponseEntity<List<HouseInfoDto>> apt(@PathVariable("dong") String dong) {
 		List<HouseInfoDto> list = hmService.getAptInDong(dong);
+		
+		if (list == null) {
+			return new ResponseEntity<>(HttpStatus.BAD_REQUEST);
+		}
+		return new ResponseEntity<>(list, HttpStatus.OK);
+	}
+	
+	@GetMapping("/apt/search/{aptName}")
+	public ResponseEntity<List<HouseInfoDto>> searchApts(@PathVariable("aptName") String aptName) throws Exception{
+		System.out.println(aptName);
+		List<HouseInfoDto> list = hmService.getAptInName(aptName);
 		
 		if (list == null) {
 			return new ResponseEntity<>(HttpStatus.BAD_REQUEST);

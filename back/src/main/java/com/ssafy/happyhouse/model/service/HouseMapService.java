@@ -28,4 +28,7 @@ public class HouseMapService {
 	public List<HouseInfoDto> getAptInDong(String dong) {
 		return sqlSession.getMapper(HouseMapMapper.class).getAptInDong(dong);
 	}
+	public List<HouseInfoDto> getAptInName(String aptName) throws Exception{
+		return sqlSession.getMapper(HouseMapMapper.class).getAptInName(aptName);
+	}
 }

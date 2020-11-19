@@ -23,10 +23,15 @@
 	</select>
 	
 	<select id="getAptInDong" parameterType="String" resultType="HouseInfoDto">
-		SELECT no, dong, AptName as aptName, code, jibun 
+		SELECT no, dong, AptName as aptName, code, jibun, lat, lng 
 		FROM houseinfo 
 		WHERE dong = #{dong}
 	</select>
 
+	<select id="getAptInName" parameterType="String" resultType="com.ssafy.happyhouse.model.dto.HouseInfoDto">
+		select no, dong, AptName as aptName, code, jibun, lat, lng
+		from houseinfo
+		where AptName like CONCAT('%',#{keyword},'%')
+	</select>
 
 </mapper>

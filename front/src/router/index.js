@@ -3,25 +3,26 @@ import VueRouter from 'vue-router';
 import Home from '@/views/Home.vue';
 import About from '@/views/About.vue';
 import Apt from '@/views/Apt.vue';
+
+import Qna from '@/views/qna/Qna.vue';
+import QnaRegist from '@/views/qna/QnaRegist';
+import QnaUpdate from '@/views/qna/QnaUpdate';
+import QnaDetail from '@/views/qna/QnaDetail';
+import Comment from '@/views/qna/Comment';
+
+import Notice from '@/views/notice/Notice';
+import NoticeDetail from '@/views/notice/NoticeDetail';
+import NoticeRegist from '@/views/notice/NoticeRegist';
+import NoticeUpdate from '@/views/notice/NoticeUpdate';
+
+import Member from '@/views/member/Member';
+import MemberLogin from '@/views/member/MemberLogin';
+import MemberRegist from '@/views/member/MemberRegist';
+import MemberDetail from '@/views/member/MemberDetail';
+import MemberUpdate from '@/views/member/MemberUpdate';
+
 import Map from '@/views/Map.vue';
-
-import Qna from '@/views/Qna.vue';
-import QnaRegist from '@/views/QnaRegist';
-import QnaUpdate from '@/views/QnaUpdate';
-import QnaDetail from '@/views/QnaDetail';
-
-import Notice from '@/views/Notice';
-import NoticeDetail from '@/views/NoticeDetail';
-import NoticeRegist from '@/views/NoticeRegist';
-import NoticeUpdate from '@/views/NoticeUpdate';
-
-import Member from '@/views/Member';
-import MemberLogin from '@/views/MemberLogin';
-import MemberRegist from '@/views/MemberRegist';
-import MemberDetail from '@/views/MemberDetail';
-import MemberUpdate from '@/views/MemberUpdate';
-
-import Comment from '@/views/Comment';
+import Map2 from '@/views/Map2';
 
 Vue.use(VueRouter);
 
@@ -115,6 +116,11 @@ const routes = [
     path: '/map',
     name: 'Map',
     component: Map,
+  },
+  {
+    path: '/map2',
+    name: 'Map2',
+    component: Map2,
   },
 ];
 

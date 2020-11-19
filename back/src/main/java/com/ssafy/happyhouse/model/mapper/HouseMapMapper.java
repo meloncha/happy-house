@@ -11,4 +11,5 @@ public interface HouseMapMapper {
 	public List<SidoGugunCodeDto> getGugunInSido(String sido);
 	public List<HouseInfoDto> getDongInGugun(String gugun);
 	public List<HouseInfoDto> getAptInDong(String dong);
+	public List<HouseInfoDto> getAptInName(String aptName) throws Exception;
 }

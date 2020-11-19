@@ -13,11 +13,12 @@
           <b-nav-item href="/qna">Q&A</b-nav-item>
           <b-nav-item href="/notice">공지사항</b-nav-item>
           <b-nav-item href="/map">지도 검색</b-nav-item>
+          <b-nav-item href="/map2">지도 검색2</b-nav-item>
         </b-navbar-nav>
       </b-collapse>
 
       <div v-if="isLogin">
-        <p>{{id}}님 안녕하세요</p>
+        <p>{{ id }}님 안녕하세요</p>
         <b-btn @click="mypage">마이페이지</b-btn>
         <b-btn @click="logout">로그아웃</b-btn>
       </div>
@@ -25,7 +26,6 @@
         <b-btn @click="login">로그인</b-btn>
         <b-btn @click="join">회원가입</b-btn>
       </div>
-
     </b-navbar>
   </div>
 </template>
@@ -62,7 +62,7 @@ export default {
     },
     join() {
       this.$router.push('/member/regist');
-    }
-  }
+    },
+  },
 };
 </script>
