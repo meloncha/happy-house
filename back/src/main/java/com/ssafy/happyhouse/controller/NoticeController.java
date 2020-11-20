@@ -75,5 +75,15 @@ public class NoticeController {
 		}
 		return new ResponseEntity<>(HttpStatus.OK);
 	}
+	
+	@GetMapping("/search/{title}")
+	public ResponseEntity<List<NoticeDto>> searchTitle(@PathVariable("title") String title) {
+		List<NoticeDto> list = noticeService.searchTitle(title);
+		
+		if (list == null) {
+			return new ResponseEntity<>(HttpStatus.BAD_REQUEST);
+		}
+		return new ResponseEntity<>(list, HttpStatus.OK);
+	}
 }
 

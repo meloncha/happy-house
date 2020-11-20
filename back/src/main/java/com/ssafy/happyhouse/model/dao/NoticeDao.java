@@ -15,4 +15,5 @@ public interface NoticeDao {
 	public int updateNotice(NoticeDto dto);
 	public int deleteNotice(int num);
 	public int updateNoticeCnt(int num);
+	public List<NoticeDto> searchTitle(String title);
 }

@@ -34,4 +34,8 @@ public class NoticeService {
 	public boolean deleteNotice(int num) {
 		return dao.deleteNotice(num) == 1;
 	}
+
+	public List<NoticeDto> searchTitle(String title) {
+		return dao.searchTitle(title);
+	}
 }

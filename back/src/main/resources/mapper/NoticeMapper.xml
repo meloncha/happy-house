@@ -34,4 +34,10 @@
 		delete from notice
 		where num = #{num}
 	</delete>
+	
+	<select id="searchTitle" parameterType="String" resultType="com.ssafy.happyhouse.model.dto.NoticeDto">
+		select *
+		from notice
+		where title like concat('%', #{title}, '%')
+	</select>
 </mapper>
