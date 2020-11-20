@@ -11,6 +11,28 @@ public class HouseInfoDto {
 	private String lat;
 	private String lng;
 	private String img;
+	private String dealAmount;
+	private String dealYear;
+	private String area;
+	
+	public HouseInfoDto() {}
+
+	public HouseInfoDto(String no, String dong, String aptName, String code, String buildYear, String jibun, String lat,
+			String lng, String img, String dealAmount, String dealYear, String area) {
+		super();
+		this.no = no;
+		this.dong = dong;
+		this.aptName = aptName;
+		this.code = code;
+		this.buildYear = buildYear;
+		this.jibun = jibun;
+		this.lat = lat;
+		this.lng = lng;
+		this.img = img;
+		this.dealAmount = dealAmount;
+		this.dealYear = dealYear;
+		this.area = area;
+	}
 
 	public String getNo() {
 		return no;
@@ -83,5 +105,29 @@ public class HouseInfoDto {
 	public void setImg(String img) {
 		this.img = img;
 	}
+
+	public String getDealAmount() {
+		return dealAmount;
+	}
+
+	public void setDealAmount(String dealAmount) {
+		this.dealAmount = dealAmount;
+	}
+
+	public String getDealYear() {
+		return dealYear;
+	}
+
+	public void setDealYear(String dealYear) {
+		this.dealYear = dealYear;
+	}
+
+	public String getArea() {
+		return area;
+	}
+
+	public void setArea(String area) {
+		this.area = area;
+	}	
 
 }

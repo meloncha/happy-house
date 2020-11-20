@@ -23,15 +23,23 @@
 	</select>
 	
 	<select id="getAptInDong" parameterType="String" resultType="HouseInfoDto">
-		SELECT no, dong, AptName as aptName, code, jibun, lat, lng 
-		FROM houseinfo 
+		SELECT DISTINCT i.no as no, i.dong as dong, i.AptName as aptName, i.code as code, i.jibun as jibun,
+			i.lat as lat, i.lng as lng, d.dealAmount as dealAmount, d.buildYear as buildYear,
+			d.dealYear as dealYear, d.area as area
+		FROM houseinfo i join housedeal d
+		ON i.dong = d.dong and i.AptName = d.AptName 
 		WHERE dong = #{dong}
+		GROUP BY AptName
 	</select>
 
 	<select id="getAptInName" parameterType="String" resultType="com.ssafy.happyhouse.model.dto.HouseInfoDto">
-		select no, dong, AptName as aptName, code, jibun, lat, lng
-		from houseinfo
-		where AptName like CONCAT('%',#{keyword},'%')
+		SELECT DISTINCT i.no as no, i.dong as dong, i.AptName as aptName, i.code as code, i.jibun as jibun,
+			i.lat as lat, i.lng as lng, d.dealAmount as dealAmount, d.buildYear as buildYear,
+			d.dealYear as dealYear, d.area as area
+		FROM houseinfo i join housedeal d
+		ON i.dong = d.dong and i.AptName = d.AptName 
+		WHERE AptName like CONCAT('%',#{keyword},'%')
+		GROUP BY AptName
 	</select>
 
 </mapper>
