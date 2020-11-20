@@ -36,85 +36,12 @@
         </select>
         읍면동 :
         <select id="dong" v-model="dong">
-          <option :value="item.dong" v-for="(item, index) in dongs" :key="index">{{
+          <option :value="item.dong" v-for="(item, index) in dongs" :key="index" >{{ 
             item.dong
           }}</option>
         </select>
       </div>
       <hr />
-
-      <!-- <div class="row" style="margin-left: 20px">
-        <div>
-          학군
-          <div class="custom-control custom-radio custom-control-inline" style="margin-left: 30px">
-            <input type="radio" class="custom-control-input" id="4" name="4" value="4" />
-            <label class="custom-control-label" for="4">초등학교</label>
-          </div>
-          <div class="custom-control custom-radio custom-control-inline">
-            <input type="radio" class="custom-control-input" id="5" name="5" value="5" />
-            <label class="custom-control-label" for="5">중학교</label>
-          </div>
-          <div class="custom-control custom-radio custom-control-inline">
-            <input type="radio" class="custom-control-input" id="6" name="6" value="6" />
-            <label class="custom-control-label" for="6">고등학교</label>
-          </div>
-        </div>
-      </div>
-      <hr />
-      <div class="row" style="margin-left: 20px">
-        <div>
-          상권
-          <div class="custom-control custom-radio custom-control-inline" style="margin-left: 30px">
-            <input type="radio" class="custom-control-input" id="7" name="7" value="7" />
-            <label class="custom-control-label" for="7">음식점</label>
-          </div>
-          <div class="custom-control custom-radio custom-control-inline">
-            <input type="radio" class="custom-control-input" id="8" name="8" value="8" />
-            <label class="custom-control-label" for="8">마트</label>
-          </div>
-          <div class="custom-control custom-radio custom-control-inline">
-            <input type="radio" class="custom-control-input" id="9" name="9" value="9" />
-            <label class="custom-control-label" for="9">백화점</label>
-          </div>
-          <div class="custom-control custom-radio custom-control-inline">
-            <input type="radio" class="custom-control-input" id="10" name="10" value="10" />
-            <label class="custom-control-label" for="10">문화시설</label>
-          </div>
-          <div class="custom-control custom-radio custom-control-inline">
-            <input type="radio" class="custom-control-input" id="11" name="11" value="11" />
-            <label class="custom-control-label" for="11">유흥시설</label>
-          </div>
-        </div>
-      </div>
-      <hr />
-      <div class="row" style="margin-left: 20px">
-        <div>
-          교통
-          <div class="custom-control custom-radio custom-control-inline" style="margin-left: 30px">
-            <input type="radio" class="custom-control-input" id="12" name="12" value="12" />
-            <label class="custom-control-label" for="12">지하철</label>
-          </div>
-          <div class="custom-control custom-radio custom-control-inline">
-            <input type="radio" class="custom-control-input" id="13" name="13" value="13" />
-            <label class="custom-control-label" for="13">버스</label>
-          </div>
-        </div>
-      </div>
-      <hr />
-      <div class="row" style="margin-left: 20px">
-        <div>
-          치안
-          <div class="custom-control custom-radio custom-control-inline" style="margin-left: 30px">
-            <input type="radio" class="custom-control-input" id="14" name="14" value="14" />
-            <label class="custom-control-label" for="14">CCTV</label>
-          </div>
-          <div class="custom-control custom-radio custom-control-inline">
-            <input type="radio" class="custom-control-input" id="15" name="15" value="15" />
-            <label class="custom-control-label" for="15">범죄율</label>
-          </div>
-        </div>
-      </div>
-      <hr /> -->
     </div>
 
     <table class="container mt-5">
@@ -173,29 +100,6 @@ export default {
           console.log(err);
         });
     },
-    // geocode(jsonData) {
-    // 	let idx = 0;
-    // 	$.each(jsonData, function (index, vo) {
-    // 		let tmpLat;
-    // 		let tmpLng;
-    // 		alert(vo.aptName)
-    // 		$.get("https://maps.googleapis.com/maps/api/geocode/json"
-    // 			, {
-    // 				key: 'AIzaSyC1fWgvVTDiVDjhUzUok0hbqiiWUaSV1hU&callback'
-    // 				, address: vo.dong + "+" + vo.aptName + "+" + vo.jibun
-    // 			}
-    // 			, function (data, status) {
-    // 				alert(data.results[0].geometry.location.lat);
-    // 				tmpLat = data.results[0].geometry.location.lat;
-    // 				tmpLng = data.results[0].geometry.location.lng;
-    // 				$("#lat_" + index).text(tmpLat);
-    // 				$("#lng_" + index).text(tmpLng);
-    // 				addMarker(tmpLat, tmpLng, vo.aptName);
-    // 			}
-    // 			, "json"
-    // 		);//get
-    // 	});//each
-    // }
   },
   created() {
     // 시도정보 가져오기
