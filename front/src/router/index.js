@@ -68,12 +68,12 @@ const routes = [
     component: Notice,
   },
   {
-    path: '/notice/detail/:id',
+    path: '/notice/detail/:num',
     name: 'NoticeDetail',
     component: NoticeDetail,
   },
   {
-    path: '/notice/update/:id',
+    path: '/notice/update/:num',
     name: 'NoticeUpdate',
     component: NoticeUpdate,
   },

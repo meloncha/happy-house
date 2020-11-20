@@ -16,7 +16,7 @@
 			</thead>
 			<tbody>
 				<tr v-for="(item, index) in notices" :key="index">
-					<th scope="row">{{ item.num }}</th>
+					<th scope="row">{{ index + 1 }}</th>
 					<td>
 						<router-link
 							:to="{ name: 'NoticeDetail', params: { num: item.num } }"

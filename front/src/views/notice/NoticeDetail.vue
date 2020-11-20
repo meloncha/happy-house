@@ -1,6 +1,6 @@
 <template>
 	<div>
-		<h1>QnA 등록</h1>
+		<h1>공지사항</h1>
 		<br />
 		<label for="id">글번호</label>
 		<input
@@ -86,7 +86,7 @@ export default {
 			this.$router.push('/notice');
 		},
 		updateNotice() {
-			this.$router.push('/qna/update/' + this.notice.num);
+			this.$router.push('/notice/update/' + this.notice.num);
 		},
 		deleteNotice() {
 			axios
