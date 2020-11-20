@@ -28,7 +28,7 @@
 			d.dealYear as dealYear, d.area as area
 		FROM houseinfo i join housedeal d
 		ON i.dong = d.dong and i.AptName = d.AptName 
-		WHERE dong = #{dong}
+		WHERE i.dong = #{dong}
 		GROUP BY AptName
 	</select>
 
@@ -38,7 +38,7 @@
 			d.dealYear as dealYear, d.area as area
 		FROM houseinfo i join housedeal d
 		ON i.dong = d.dong and i.AptName = d.AptName 
-		WHERE AptName like CONCAT('%',#{keyword},'%')
+		WHERE i.AptName like CONCAT('%',#{keyword},'%')
 		GROUP BY AptName
 	</select>
 
