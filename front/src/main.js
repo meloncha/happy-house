@@ -12,6 +12,8 @@ Vue.use(IconsPlugin);
 import 'bootstrap/dist/css/bootstrap.css';
 import 'bootstrap-vue/dist/bootstrap-vue.css';
 
+window.Kakao.init('0f4f76ba8fccad976c9cb5ae31ac0a15');
+
 Vue.config.productionTip = false;
 
 new Vue({

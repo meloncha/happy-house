@@ -21,8 +21,9 @@ import MemberRegist from '@/views/member/MemberRegist';
 import MemberDetail from '@/views/member/MemberDetail';
 import MemberUpdate from '@/views/member/MemberUpdate';
 
-import Map from '@/views/map/Map.vue';
-import Map2 from '@/views/map/Map2';
+import Map from '@/views/Map.vue';
+import Map2 from '@/views/Map2';
+
 
 Vue.use(VueRouter);
 
@@ -68,12 +69,12 @@ const routes = [
     component: Notice,
   },
   {
-    path: '/notice/detail/:num',
+    path: '/notice/detail/:id',
     name: 'NoticeDetail',
     component: NoticeDetail,
   },
   {
-    path: '/notice/update/:num',
+    path: '/notice/update/:id',
     name: 'NoticeUpdate',
     component: NoticeUpdate,
   },
@@ -93,7 +94,7 @@ const routes = [
     component: MemberLogin,
   },
   {
-    path: '/member/detail/:id',
+    path: '/member/detail',
     name: 'MemberDetail',
     component: MemberDetail,
   },

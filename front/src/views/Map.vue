@@ -249,15 +249,16 @@
           <th>경도</th>
         </tr>
       </thead>
+
       <tbody></tbody>
     </table>
-
-    <div class="map">
+    <div id="map">
       <hr />
       <div id="map"></div>
     </div>
   </div>
 </template>
+
 
 <script>
 export default {
@@ -310,6 +311,7 @@ export default {
     },
   },
 };
+
 </script>
 
 <style>
