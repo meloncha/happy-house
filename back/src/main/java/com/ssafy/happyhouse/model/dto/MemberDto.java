@@ -8,6 +8,18 @@ public class MemberDto {
 	private String phone;
 	private String address;
 	
+	public MemberDto() {}
+		
+	public MemberDto(String id, String pwd, String name, String email, String phone, String address, int userinfo) {
+		super();
+		this.id = id;
+		this.pwd = pwd;
+		this.name = name;
+		this.email = email;
+		this.phone = phone;
+		this.address = address;
+		this.userinfo = userinfo;
+	}
 	public int getUserinfo() {
 		return userinfo;
 	}

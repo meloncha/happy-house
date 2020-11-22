@@ -35,4 +35,5 @@ public class MemberService {
 	public MemberDto detail(String id) {
 		return sqlSession.getMapper(MemberMapper.class).detail(id);
 	}
+	
 }

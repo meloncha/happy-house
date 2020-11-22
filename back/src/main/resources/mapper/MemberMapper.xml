@@ -1,37 +1,45 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
-<mapper namespace="com.ssafy.happyhouse.model.mapper.MemberMapper">
+<mapper
+	namespace="com.ssafy.happyhouse.model.mapper.MemberMapper">
 
-	<select id="login" parameterType="HashMap" resultType="MemberDto">
+	<select id="login" parameterType="HashMap"
+		resultType="MemberDto">
 		select *
 		from member
 		where id = #{id} and pwd = #{pwd}
 	</select>
-	
+
 	<insert id="insertMember" parameterType="MemberDto">
-		insert into member (id, pwd, name, email, phone, address)
-		values (#{id}, #{pwd}, #{name}, #{email}, #{phone}, #{address})
+		insert into member (id,
+		pwd, name, email, phone, address)
+		values (#{id}, #{pwd}, #{name},
+		#{email}, #{phone}, #{address})
 	</insert>
 
 	<update id="updateMember" parameterType="MemberDto">
 		update member
-		set pwd = #{pwd}, email = #{email}, address = #{address}
+		set pwd =
+		#{pwd}, email = #{email}, address = #{address}
 		where id = #{id}
 	</update>
 
 	<delete id="deleteMember" parameterType="String">
 		delete from member
-		where id = #{id}
+		where
+		id = #{id}
 	</delete>
-	
+
 	<select id="memberList" resultType="MemberDto">
 		select *
 		from member
 	</select>
-	 
-		<select id="detail" parameterType="String" resultType="MemberDto">
+
+	<select id="detail" parameterType="String"
+		resultType="MemberDto">
 		select *
-		from member 
+		from member
 		where id = #{id}
 	</select>
+	
 </mapper>

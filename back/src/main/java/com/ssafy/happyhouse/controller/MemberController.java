@@ -148,4 +148,26 @@ public class MemberController {
 		}
 		
 	}
+	
+	@PostMapping("/kakao")
+	public ResponseEntity<Map<String, Object>> kakaoLogin(@RequestBody MemberDto dto) { 
+		MemberDto user = mService.detail(dto.getId());
+		
+		if (user == null) {
+			mService.insertMember(dto);
+			user = dto;
+		}
+		
+		Map<String, Object> resultMap = new HashMap<>();
+		String token = jwtService.create(user);
+		logger.trace("로그인 토큰정보 : {}", token);
+		
+		// 토큰 정보는 response의 헤더로 보내고 나머지는 Map에 담는다.
+		resultMap.put("auth-token", token);
+		resultMap.put("id", user.getId());
+		resultMap.put("name", user.getName());
+		HttpStatus status = HttpStatus.ACCEPTED;
+		
+		return new ResponseEntity<>(resultMap, status);
+	}
 }
