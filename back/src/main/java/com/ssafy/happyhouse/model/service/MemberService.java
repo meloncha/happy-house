@@ -25,14 +25,14 @@ public class MemberService {
 	public int updateMember(MemberDto dto) {
 		return sqlSession.getMapper(MemberMapper.class).updateMember(dto);
 	}
-	public int deleteMember(MemberDto dto) {
-		return sqlSession.getMapper(MemberMapper.class).deleteMember(dto);
+	public int deleteMember(String id) {
+		return sqlSession.getMapper(MemberMapper.class).deleteMember(id);
 	}
 	public List<MemberDto> memberList() {
 		return sqlSession.getMapper(MemberMapper.class).memberList();
 	}
 
-	public MemberDto detail(String userid) {
-		return sqlSession.getMapper(MemberMapper.class).detail(userid);
+	public MemberDto detail(String id) {
+		return sqlSession.getMapper(MemberMapper.class).detail(id);
 	}
 }

@@ -21,8 +21,8 @@ import MemberRegist from '@/views/member/MemberRegist';
 import MemberDetail from '@/views/member/MemberDetail';
 import MemberUpdate from '@/views/member/MemberUpdate';
 
-import Map from '@/views/Map.vue';
-import Map2 from '@/views/Map2';
+import Map from '@/views/map/Map.vue';
+import Map2 from '@/views/map/Map2';
 
 Vue.use(VueRouter);
 

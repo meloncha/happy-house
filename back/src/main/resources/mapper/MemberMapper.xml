@@ -5,23 +5,23 @@
 	<select id="login" parameterType="HashMap" resultType="MemberDto">
 		select *
 		from member
-		where userid = #{userid} and userpassword = #{userpassword}
+		where id = #{id} and pwd = #{pwd}
 	</select>
 	
 	<insert id="insertMember" parameterType="MemberDto">
-		insert into member (userid, userpassword, useremail, useraddress, userinfo)
-		values (#{userid}, #{userpassword}, #{useremail}, #{useraddress}, #{userinfo})
+		insert into member (id, pwd, name, email, phone, address)
+		values (#{id}, #{pwd}, #{name}, #{email}, #{phone}, #{address})
 	</insert>
 
 	<update id="updateMember" parameterType="MemberDto">
 		update member
-		set userpassword = #{userpassword}, useremail = #{useremail}, useraddress = #{useraddress}
-		where userid = #{userid}
+		set pwd = #{pwd}, email = #{email}, address = #{address}
+		where id = #{id}
 	</update>
 
-	<delete id="deleteMember" parameterType="MemberDto">
+	<delete id="deleteMember" parameterType="String">
 		delete from member
-		where userid = #{userid} and userpassword = #{userpassword}
+		where id = #{id}
 	</delete>
 	
 	<select id="memberList" resultType="MemberDto">
@@ -32,6 +32,6 @@
 		<select id="detail" parameterType="String" resultType="MemberDto">
 		select *
 		from member 
-		where userid = #{userid}
+		where id = #{id}
 	</select>
 </mapper>
