@@ -29,72 +29,74 @@
       </tbody>
     </table>
 
-    <button type="button" class="btn btn-primary" @click="move">Q&A 등록</button>
+    <button type="button" class="btn btn-primary" @click="move">
+      Q&A 등록
+    </button>
   </div>
 </template>
 
 <script>
-import axios from 'axios';
+import axios from "axios";
 
 export default {
   data() {
     return {
-      keyword: '',
-      qnas: [],
+      keyword: "",
+      qnas: []
     };
   },
   methods: {
     search() {
       axios
-        .get('http://localhost:7777/happyhouse/qna/list')
-        .then((response) => {
+        .get("http://localhost:7777/happyhouse/qna/list")
+        .then(response => {
           const word = this.keyword.toUpperCase();
           let arr = response.data;
-          this.qnas = arr.filter((v) => {
+          this.qnas = arr.filter(v => {
             const fname = v.firstName.toUpperCase();
             const lname = v.lastName.toUpperCase();
             return fname.includes(word) || lname.includes(word);
           });
         })
-        .catch((err) => {
+        .catch(err => {
           console.log(err);
         });
     },
     move() {
-      this.$router.push('/qna/regist');
+      this.$router.push("/qna/regist");
     },
     addComment(id) {
-      this.$router.push('/qna/comment/' + id);
-    },
+      this.$router.push("/qna/comment/" + id);
+    }
   },
   created() {
-    console.log('create');
+    console.log("create");
     axios
-      .get('http://localhost:7777/happyhouse/qna/list')
-      .then((response) => {
+      .get("http://localhost:7777/happyhouse/qna/list")
+      .then(response => {
         this.qnas = response.data;
       })
-      .catch((err) => {
+      .catch(err => {
         console.log(err);
       });
   },
   watch: {
     keyword() {
       axios
-        .get('http://localhost:7777/happyhouse/qna/list')
-        .then((response) => {
+        .get("http://localhost:7777/happyhouse/qna/list")
+        .then(response => {
           const word = this.keyword;
           let arr = response.data;
-          this.qnas = arr.filter((v) => {
+          this.qnas = arr.filter(v => {
             const title = v.title;
             return title.includes(word);
           });
         })
-        .catch((err) => {
+        .catch(err => {
           console.log(err);
         });
-    },
-  },
+    }
+  }
 };
 </script>
 

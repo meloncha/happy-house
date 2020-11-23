@@ -28,61 +28,65 @@
       rows="10"
     ></textarea>
 
-    <button type="button" class="btn btn-primary" @click="updateQna">질문 수정</button>
-    <button type="button" class="btn btn-secondary" @click="move">목록 돌아가기</button>
+    <button type="button" class="btn btn-primary" @click="updateQna">
+      질문 수정
+    </button>
+    <button type="button" class="btn btn-secondary" @click="move">
+      목록 돌아가기
+    </button>
   </div>
 </template>
 
 <script>
-import axios from 'axios';
+import axios from "axios";
 
 export default {
   data() {
     return {
       qna: {
-        id: '',
-        title: '',
-        writer: '',
-        content: '',
-        date: '',
-        comment: '',
-      },
+        id: "",
+        title: "",
+        writer: "",
+        content: "",
+        date: "",
+        comment: ""
+      }
     };
   },
   created() {
     this.qna.id = this.$route.params.id;
 
     axios
-      .get('http://127.0.0.1:7777/happyhouse/qna/' + this.qna.id)
-      .then((res) => {
+      .get("http://127.0.0.1:7777/happyhouse/qna/" + this.qna.id)
+      .then(res => {
         this.qna = res.data;
       })
-      .catch((err) => {
+      .catch(err => {
         console.log(err);
       });
   },
   methods: {
     updateQna() {
       axios
-        .put('http://127.0.0.1:7777/happyhouse/qna/modify', this.qna)
-        .then((response) => {
+        .put("http://127.0.0.1:7777/happyhouse/qna/modify", this.qna)
+        .then(response => {
           const msg = response.data;
-          if (msg == 'success') {
-            alert('질문이 수정되었습니다');
+          if (msg == "success") {
+            alert("질문이 수정되었습니다");
           } else {
-            alert('수정에 실패하였습니다.');
+            alert("수정에 실패하였습니다.");
           }
-          this.$router.push('/qna');
+          this.$router.push("/qna");
         })
-        .catch((error) => {
+        .catch(error => {
           console.log(error);
         })
         .finally();
     },
     move() {
-      this.$router.push('/qna');
-    },
-  },
+      this.$router.push("/qna");
+    }
+  }
 };
 </script>
 

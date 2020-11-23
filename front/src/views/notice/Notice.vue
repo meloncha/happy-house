@@ -1,88 +1,88 @@
 <template>
-	<div id="app" style="text-align: center;">
-		<h1>공지사항</h1>
-		<input type="text" v-model="keyword" @keyup.enter="search" />
-		<button type="button" class="btn btn-warning" @click="search">검색</button>
+  <div id="app" style="text-align: center;">
+    <h1>공지사항</h1>
+    <input type="text" v-model="keyword" @keyup.enter="search" />
+    <button type="button" class="btn btn-warning" @click="search">검색</button>
 
-		<table class="table table-striped table-bordered">
-			<thead class="table-primary">
-				<tr>
-					<th scope="col">글번호</th>
-					<th scope="col">제목</th>
-					<th scope="col">작성자</th>
-					<th scope="col">작성일</th>
-					<th scope="col">조회수</th>
-				</tr>
-			</thead>
-			<tbody>
-				<tr v-for="(item, index) in notices" :key="index">
-					<th scope="row">{{ index + 1 }}</th>
-					<td>
-						<router-link
-							:to="{ name: 'NoticeDetail', params: { num: item.num } }"
-							>{{ item.title }}</router-link
-						>
-					</td>
-					<td>{{ item.writer }}</td>
-					<td>{{ item.date }}</td>
-					<td>{{ item.readcnt }}</td>
-				</tr>
-			</tbody>
-		</table>
+    <table class="table table-striped table-bordered">
+      <thead class="table-primary">
+        <tr>
+          <th scope="col">글번호</th>
+          <th scope="col">제목</th>
+          <th scope="col">작성자</th>
+          <th scope="col">작성일</th>
+          <th scope="col">조회수</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr v-for="(item, index) in notices" :key="index">
+          <th scope="row">{{ index + 1 }}</th>
+          <td>
+            <router-link
+              :to="{ name: 'NoticeDetail', params: { num: item.num } }"
+              >{{ item.title }}</router-link
+            >
+          </td>
+          <td>{{ item.writer }}</td>
+          <td>{{ item.date }}</td>
+          <td>{{ item.readcnt }}</td>
+        </tr>
+      </tbody>
+    </table>
 
-		<button type="button" class="btn btn-primary" @click="move">
-			Q&A 등록
-		</button>
-	</div>
+    <button type="button" class="btn btn-primary" @click="move">
+      Q&A 등록
+    </button>
+  </div>
 </template>
 
 <script>
-import axios from 'axios';
+import axios from "axios";
 
 export default {
-	data() {
-		return {
-			keyword: '',
-			notices: [],
-		};
-	},
-	methods: {
-		search() {
-			axios
-				.get(`http://localhost:7777/happyhouse/notice/search/${this.keyword}`)
-				.then(({ data }) => {
-					this.notices = data;
-				})
-				.catch((err) => {
-					console.log(err);
-				});
-		},
-		move() {
-			this.$router.push('/notice/regist');
-		},
-	},
-	created() {
-		axios
-			.get(`http://localhost:7777/happyhouse/notice`)
-			.then(({ data }) => {
-				this.notices = data;
-			})
-			.catch((err) => {
-				console.log(err);
-			});
-	},
-	watch: {
-		keyword() {
-			axios
-				.get(`http://localhost:7777/happyhouse/notice/search/${this.keyword}`)
-				.then(({ data }) => {
-					this.notices = data;
-				})
-				.catch((err) => {
-					console.log(err);
-				});
-		},
-	},
+  data() {
+    return {
+      keyword: "",
+      notices: []
+    };
+  },
+  methods: {
+    search() {
+      axios
+        .get(`http://localhost:7777/happyhouse/notice/search/${this.keyword}`)
+        .then(({ data }) => {
+          this.notices = data;
+        })
+        .catch(err => {
+          console.log(err);
+        });
+    },
+    move() {
+      this.$router.push("/notice/regist");
+    }
+  },
+  created() {
+    axios
+      .get(`http://localhost:7777/happyhouse/notice`)
+      .then(({ data }) => {
+        this.notices = data;
+      })
+      .catch(err => {
+        console.log(err);
+      });
+  },
+  watch: {
+    keyword() {
+      axios
+        .get(`http://localhost:7777/happyhouse/notice/search/${this.keyword}`)
+        .then(({ data }) => {
+          this.notices = data;
+        })
+        .catch(err => {
+          console.log(err);
+        });
+    }
+  }
 };
 </script>
 

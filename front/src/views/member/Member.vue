@@ -26,64 +26,64 @@
 </template>
 
 <script>
-import axios from 'axios';
+import axios from "axios";
 
 export default {
   data() {
     return {
-      keyword: '',
-      members: [],
+      keyword: "",
+      members: []
     };
   },
   methods: {
     search() {
       axios
-        .get('http://localhost:7777/happyhouse/member/list')
-        .then((response) => {
+        .get("http://localhost:7777/happyhouse/member/list")
+        .then(response => {
           const word = this.keyword.toUpperCase();
           let arr = response.data;
-          this.members = arr.filter((v) => {
+          this.members = arr.filter(v => {
             const fname = v.firstName.toUpperCase();
             const lname = v.lastName.toUpperCase();
             return fname.includes(word) || lname.includes(word);
           });
         })
-        .catch((err) => {
+        .catch(err => {
           console.log(err);
         });
     },
     move() {
-      this.$router.push('/');
-    },
+      this.$router.push("/");
+    }
   },
   created() {
     axios
-      .get('http://localhost:7777/happyhouse/member/list')
-      .then((response) => {
+      .get("http://localhost:7777/happyhouse/member/list")
+      .then(response => {
         this.members = response.data;
       })
-      .catch((err) => {
+      .catch(err => {
         console.log(err);
       });
   },
   watch: {
     keyword() {
       axios
-        .get('http://localhost:7777/happyhouse/member/list')
-        .then((response) => {
+        .get("http://localhost:7777/happyhouse/member/list")
+        .then(response => {
           const word = this.keyword.toUpperCase();
           let arr = response.data;
-          this.members = arr.filter((v) => {
+          this.members = arr.filter(v => {
             const fname = v.firstName.toUpperCase();
             const lname = v.lastName.toUpperCase();
             return fname.includes(word) || lname.includes(word);
           });
         })
-        .catch((err) => {
+        .catch(err => {
           console.log(err);
         });
-    },
-  },
+    }
+  }
 };
 </script>
 

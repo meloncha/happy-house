@@ -18,10 +18,10 @@
 </template>
 
 <script>
-import SearchBar from '@/components/SearchBar.vue';
-import AptList from '@/components/AptList.vue';
-import AptDetail from '@/components/AptDetail.vue';
-import axios from 'axios';
+import SearchBar from "@/components/SearchBar.vue";
+import AptList from "@/components/AptList.vue";
+import AptDetail from "@/components/AptDetail.vue";
+import axios from "axios";
 
 // vue cli enviroment variables 검색
 // 반드시 VUE_APP으로 시작해야 한다.
@@ -55,19 +55,19 @@ import axios from 'axios';
 */
 
 export default {
-  name: 'Apt',
+  name: "Apt",
   components: {
     SearchBar,
     AptList,
-    AptDetail,
+    AptDetail
   },
   data() {
     return {
-      dongCode: '',
+      dongCode: "",
       apts: [],
       // selectedApt: {},
       date: 202010,
-      selectedApt: '',
+      selectedApt: ""
     };
   },
   methods: {
@@ -76,29 +76,29 @@ export default {
       this.dongCode = dongCode;
 
       const API_KEY =
-        'FoQwxActT1yGsjTvn%2Fa883AmpwaaoG93IZmXH4unLLOSv9lBENc0tNI66%2B9jNe2aGQIGVL9ckDlPz%2BwjaXvwyg%3D%3D';
+        "FoQwxActT1yGsjTvn%2Fa883AmpwaaoG93IZmXH4unLLOSv9lBENc0tNI66%2B9jNe2aGQIGVL9ckDlPz%2BwjaXvwyg%3D%3D";
       const API_URL =
-        'http://openapi.molit.go.kr/OpenAPI_ToolInstallPackage/service/rest/RTMSOBJSvc/getRTMSDataSvcAptTradeDev?LAWD_CD=' +
+        "http://openapi.molit.go.kr/OpenAPI_ToolInstallPackage/service/rest/RTMSOBJSvc/getRTMSDataSvcAptTradeDev?LAWD_CD=" +
         dongCode +
-        '&DEAL_YMD=' +
+        "&DEAL_YMD=" +
         this.date +
-        '&serviceKey=' +
+        "&serviceKey=" +
         API_KEY;
 
       axios
         .get(API_URL)
-        .then((response) => {
+        .then(response => {
           console.log(response);
           this.apts = response.data.response.body.items.item;
         })
-        .catch((error) => {
+        .catch(error => {
           console.log(error);
         });
     },
     selectApt(apt) {
       this.selectedApt = apt;
-    },
-  },
+    }
+  }
 };
 </script>
 

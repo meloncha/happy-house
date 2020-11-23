@@ -14,7 +14,8 @@
           <b-nav-item @click="moveAbout">About</b-nav-item>
           <b-nav-item @click="moveQna">Q&A</b-nav-item>
           <b-nav-item @click="moveNotice">공지사항</b-nav-item>
-          <b-nav-item @click="moveMap">지도 상세 검색</b-nav-item>
+          <b-nav-item @click="moveMap">Map</b-nav-item>
+          <b-nav-item @click="moveNews">News</b-nav-item>
         </b-navbar-nav>
       </b-collapse>
 
@@ -39,6 +40,7 @@
 </template>
 
 <script>
+import axios from 'axios';
 //mapGetters 등록
 import { mapGetters } from 'vuex';
 
@@ -54,9 +56,20 @@ export default {
   },
   methods: {
     onClickLogout() {
-      this.$store.dispatch('LOGOUT').then(() => this.$router.push('/').catch(() => {}));
+      this.$store.dispatch('LOGOUT').then(() => this.$router.push('/logout').catch(() => {}));
 
       window.Kakao.Auth.logout();
+
+      axios
+        .get(
+          'https://kauth.kakao.com/oauth/logout?client_id=1477c3cde72d97e6eb6a3fde455fd68a&logout_redirect_uri=http://localhost:8080/logout'
+        )
+        .then((response) => {
+          console.log(response);
+        })
+        .catch((error) => {
+          console.log(error);
+        });
     },
     moveLogin() {
       this.$router.push('/member/login');
@@ -81,6 +94,9 @@ export default {
     },
     moveMap() {
       this.$router.push('/map2');
+    },
+    moveNews() {
+      this.$router.push('/news');
     },
   },
   updated() {

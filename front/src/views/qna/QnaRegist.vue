@@ -15,42 +15,46 @@
       rows="10"
     ></textarea>
 
-    <button type="button" class="btn btn-primary" @click="addQna">QnA 등록</button>
-    <button type="button" class="btn btn-secondary" @click="move">QnA 목록</button>
+    <button type="button" class="btn btn-primary" @click="addQna">
+      QnA 등록
+    </button>
+    <button type="button" class="btn btn-secondary" @click="move">
+      QnA 목록
+    </button>
   </div>
 </template>
 
 <script>
-import axios from 'axios';
+import axios from "axios";
 
 export default {
   data() {
     return {
       qna: {
-        title: '',
-        writer: '',
-        content: '',
-      },
+        title: "",
+        writer: "",
+        content: ""
+      }
     };
   },
   methods: {
     addQna() {
       axios
-        .post('http://127.0.0.1:7777/happyhouse/qna/add', this.qna)
-        .then((response) => {
-          alert('Qna가 등록되었습니다');
+        .post("http://127.0.0.1:7777/happyhouse/qna/add", this.qna)
+        .then(response => {
+          alert("Qna가 등록되었습니다");
           console.log(response);
-          this.$router.push('/qna');
+          this.$router.push("/qna");
         })
-        .catch((error) => {
+        .catch(error => {
           console.log(error);
         })
         .finally();
     },
     move() {
-      this.$router.push('/qna');
-    },
-  },
+      this.$router.push("/qna");
+    }
+  }
 };
 </script>
 

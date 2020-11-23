@@ -22,10 +22,10 @@
 // import Main from '@/components/Main.vue';
 
 export default {
-  name: 'Home',
+  name: "Home",
   components: {
     // Main,
-  },
+  }
 };
 </script>
 
@@ -64,9 +64,9 @@ video {
 }
 
 @font-face {
-  font-family: 'KOTRA_BOLD-Bold';
-  src: url('https://cdn.jsdelivr.net/gh/projectnoonnu/noonfonts_20-10-21@1.1/KOTRA_BOLD-Bold.woff')
-    format('woff');
+  font-family: "KOTRA_BOLD-Bold";
+  src: url("https://cdn.jsdelivr.net/gh/projectnoonnu/noonfonts_20-10-21@1.1/KOTRA_BOLD-Bold.woff")
+    format("woff");
   font-weight: normal;
   font-style: normal;
 }

@@ -23,7 +23,8 @@ import MemberUpdate from '@/views/member/MemberUpdate';
 
 import Map from '@/views/Map.vue';
 import Map2 from '@/views/Map2';
-
+import News from '@/views/News';
+import MemberLogout from '@/views/member/MemberLogout';
 
 Vue.use(VueRouter);
 
@@ -122,6 +123,16 @@ const routes = [
     path: '/map2',
     name: 'Map2',
     component: Map2,
+  },
+  {
+    path: '/news',
+    name: 'News',
+    component: News,
+  },
+  {
+    path: '/logout',
+    name: 'MemberLogout',
+    component: MemberLogout,
   },
 ];
 

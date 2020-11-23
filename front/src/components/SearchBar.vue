@@ -10,23 +10,23 @@
 
 <script>
 export default {
-  name: 'SearchBar',
+  name: "SearchBar",
   data: () => {
     return {
-      dongCode: '',
+      dongCode: ""
     };
   },
   methods: {
     sendDongCode() {
       console.log(this.dongCode);
-      this.$emit('send-dong-code', this.dongCode);
-    },
+      this.$emit("send-dong-code", this.dongCode);
+    }
   },
   watch: {
     dongCode() {
-      this.$emit('send-dong-code', this.dongCode);
-    },
-  },
+      this.$emit("send-dong-code", this.dongCode);
+    }
+  }
 };
 </script>
 

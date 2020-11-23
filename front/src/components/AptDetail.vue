@@ -8,24 +8,24 @@
       <li>아파트 이름 :{{ apt.아파트 }}</li>
       <li>법정동 : {{ apt.법정동 }}</li>
       <li>층수 : {{ apt.층 }}</li>
-      <li>거래금액 : {{ (apt.거래금액.replace(',', '') * 10000) | price }}</li>
+      <li>거래금액 : {{ (apt.거래금액.replace(",", "") * 10000) | price }}</li>
     </ul>
   </div>
 </template>
 
 <script>
 export default {
-  name: 'AptDetail',
+  name: "AptDetail",
   props: {
     // apt: Object,
-    apt: [Object, String],
+    apt: [Object, String]
   },
   filters: {
     price(value) {
       if (!value) return value;
-      return value.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ',');
-    },
-  },
+      return value.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ",");
+    }
+  }
 };
 </script>
 

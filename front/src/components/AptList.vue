@@ -10,21 +10,21 @@
 </template>
 
 <script>
-import AptListItem from '@/components/AptListItem.vue';
+import AptListItem from "@/components/AptListItem.vue";
 
 export default {
-  name: 'AptList',
+  name: "AptList",
   components: {
-    AptListItem,
+    AptListItem
   },
   props: {
-    aptList: Array,
+    aptList: Array
   },
   methods: {
     selectApt(apt) {
-      this.$emit('select-apt', apt);
-    },
-  },
+      this.$emit("select-apt", apt);
+    }
+  }
 };
 </script>
 

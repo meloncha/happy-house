@@ -259,32 +259,31 @@
   </div>
 </template>
 
-
 <script>
 export default {
-  name: 'Map',
+  name: "Map",
 
   mounted() {
     if (window.kakao && window.kakao.maps) {
       this.initMap(); // 초기 맵 으로 이동 (지금은 카카오 좌표)
     } else {
-      const script = document.createElement('script');
+      const script = document.createElement("script");
       /* global kakao */
       script.onload = () => kakao.maps.load(this.initMap);
       script.src =
-        'http://dapi.kakao.com/v2/maps/sdk.js?autoload=false&appkey=ee37a1035dfa14e56abd773fe878b0fc';
+        "http://dapi.kakao.com/v2/maps/sdk.js?autoload=false&appkey=ee37a1035dfa14e56abd773fe878b0fc";
       document.head.appendChild(script);
 
       // 마커가 표시될 위치입니다
       var markerPosition = new kakao.maps.LatLng(33.450701, 126.570667); //methods 호출하고 axios로 vue 드롭다운 메뉴에 있는 좌표 값으로 변경
 
       var marker = new kakao.maps.Marker({
-        position: markerPosition,
+        position: markerPosition
       });
-      var container = document.getElementById('map');
+      var container = document.getElementById("map");
       var options = {
         center: new kakao.maps.LatLng(33.450701, 126.570667),
-        level: 3,
+        level: 3
       }; // 지도를 표시할 div
       var map = new kakao.maps.Map(container, options);
       marker.setMap(map);
@@ -294,24 +293,23 @@ export default {
   methods: {
     //axios로 vue 드롭다운 메뉴에 있는 좌표 값 리스트로
     initMap() {
-      var container = document.getElementById('map');
+      var container = document.getElementById("map");
       var options = {
         center: new kakao.maps.LatLng(36.354975, 127.298382),
-        level: 3,
+        level: 3
       };
 
       var markerPosition = new kakao.maps.LatLng(36.354975, 127.298382);
 
       var marker = new kakao.maps.Marker({
-        position: markerPosition,
+        position: markerPosition
       });
       var map = new kakao.maps.Map(container, options);
       marker.setMap(map);
       map.setMapTypeId(kakao.maps.MapTypeId.kakao);
-    },
-  },
+    }
+  }
 };
-
 </script>
 
 <style>
