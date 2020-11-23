@@ -1,23 +1,21 @@
 <template>
   <div>
-    <b-navbar toggleable="lg" type="dark" variant="dark">
-      <b-navbar-brand href="/">Happy House</b-navbar-brand>
+    <b-navbar toggleable="lg" style="background-color:#fffdd6;">
+      <b-navbar-brand
+        ><router-link to="/"
+          ><img height="100" src="@/assets/happyhouselogo3.png" alt=""/></router-link
+      ></b-navbar-brand>
 
       <b-navbar-toggle target="nav-collapse"></b-navbar-toggle>
 
       <b-collapse id="nav-collapse" is-nav>
         <b-navbar-nav>
-          <!-- <router-link to="/apt">아파트정보</router-link> -->
-          <b-navbar-nav>
-            <!-- <router-link to="/apt">아파트정보</router-link> -->
-            <b-nav-item><router-link to="/apt">아파트정보</router-link></b-nav-item>
-            <b-nav-item><router-link to="/about">About</router-link></b-nav-item>
-            <b-nav-item><router-link to="/qna">Q&A</router-link></b-nav-item>
-            <b-nav-item><router-link to="/notice">공지사항</router-link></b-nav-item>
-            <b-nav-item><router-link to="/map">지도 검색</router-link></b-nav-item>
-            <b-nav-item><router-link to="/map2">지도 검색2</router-link></b-nav-item>
+            <b-nav-item @click="moveApt">아파트정보</b-nav-item>
+            <b-nav-item @click="moveAbout">About</b-nav-item>
+            <b-nav-item @click="moveQna">Q&A</b-nav-item>
+            <b-nav-item @click="moveNotice">공지사항</b-nav-item>
+            <b-nav-item @click="moveMap">지도 상세 검색</b-nav-item>
           </b-navbar-nav>
-        </b-navbar-nav>
       </b-collapse>
 
       <b-collapse id="nav-collapse" is-nav>
@@ -26,12 +24,12 @@
             ><b-avatar variant="primary" v-text="getUserId.charAt(0).toUpperCase()"></b-avatar
             >{{ getUserName }}({{ getUserId }})님 환영합니다.</b-nav-item
           >
-          <b-nav-item><router-link to="/member/detail">내정보보기</router-link></b-nav-item>
-          <b-nav-item @click.prevent="onClickLogout">로그아웃</b-nav-item>
+          <b-nav-item @click="moveDetail">내정보보기</b-nav-item>
+          <b-nav-item @click="onClickLogout">로그아웃</b-nav-item>
         </b-navbar-nav>
         <b-navbar-nav class="ml-auto" v-else>
-          <b-nav-item> <router-link to="/member/login">로그인</router-link></b-nav-item>
-          <b-nav-item><router-link to="/member/regist">회원가입</router-link></b-nav-item>
+          <b-nav-item @click="moveLogin">로그인</b-nav-item>
+          <b-nav-item @click="moveRegist">회원가입</b-nav-item>
           <!-- <b-nav-item href="/login">로그인</b-nav-item>
             <b-nav-item href="/join">회원가입</b-nav-item> -->
         </b-navbar-nav>
@@ -56,7 +54,35 @@ export default {
   },
   methods: {
     onClickLogout() {
-      this.$store.dispatch('LOGOUT').then(() => this.$router.replace('/').catch(() => {}));
+      this.$store.dispatch('LOGOUT').then(() => this.$router.push('/').catch(() => {}));
+
+      window.Kakao.Auth.logout();
+
+      alert(document.cookie);
+    },
+    moveLogin() {
+      this.$route.push('/member/login');
+    },
+    moveJoin() {
+      this.$router.push('/member/regist');
+    },
+    moveDetail() {
+      this.$router.push('/member/detail');
+    },
+    moveApt() {
+      this.$router.push('/apt');
+    },
+    moveNotice() {
+      this.$router.push('/notice');
+    },
+    moveAbout() {
+      this.$router.push('/about');
+    },
+    moveQna() {
+      this.$router.push('/qna');
+    },
+    moveMap() {
+      this.$router.push('/map2');
     },
   },
   updated() {
@@ -90,6 +116,19 @@ export default {
 
 a {
   color: rgb(219, 250, 250);
+}
+
+#nav-collapse {
+  font-family: KOTRA_BOLD-Bold;
+  font-size: 20px;
+  color: black !important;
+}
+@font-face {
+  font-family: 'KOTRA_BOLD-Bold';
+  src: url('https://cdn.jsdelivr.net/gh/projectnoonnu/noonfonts_20-10-21@1.1/KOTRA_BOLD-Bold.woff')
+    format('woff');
+  font-weight: normal;
+  font-style: normal;
 }
 
 a:hover {

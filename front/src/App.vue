@@ -6,12 +6,14 @@
     </b-container>
     <!-- 3. 보여주기 -->
     <router-view />
+    <Bottom />
   </div>
 </template>
 
 <script>
 //1. 사용할 컴포넌트 불러오기.
 import Header from '@/components/Header.vue';
+import Bottom from '@/components/Bottom.vue';
 
 export default {
   name: 'App',
@@ -20,6 +22,7 @@ export default {
     // Header: Header == Header
     //2. 컴포넌트 등록하기.
     Header,
+    Bottom,
   },
   data() {
     return {};

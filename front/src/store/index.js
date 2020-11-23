@@ -57,6 +57,17 @@ export default new Vuex.Store({
         'img',
         'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSl5CNtDH_vn1qWx1gJwCPGzeWbCDf-g4L6BQ&usqp=CAU'
       );
+
+      window.Kakao.API.request({
+        url: '/v1/user/unlink',
+        success: function(response) {
+          console.log(response);
+        },
+        fail: function(error) {
+          console.log(error);
+        },
+      });
+
     },
     KAKAO_LOGIN(context, user) {
       return axios.post(`${SERVER_URL}/member/kakao`, user).then((response) => {

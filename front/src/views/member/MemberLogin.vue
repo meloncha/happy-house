@@ -45,8 +45,10 @@ export default {
     },
     kakaoLogin() {
       // console.log(window.Kakao);
+      window.Kakao.Auth.cleanup();
+
       window.Kakao.Auth.login({
-        scope: 'account_email',
+        scope: 'account_email,profile',
         success: this.GetMe,
       });
     },
@@ -56,7 +58,9 @@ export default {
       window.Kakao.API.request({
         url: '/v2/user/me',
         success: (res) => {
+          console.log(res);
           const kakao_account = res.kakao_account;
+          console.log(kakao_account.profile);
           const userInfo = {
             id: kakao_account.email,
             name: kakao_account.profile.nickname,
