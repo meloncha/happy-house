@@ -10,12 +10,12 @@
 
       <b-collapse id="nav-collapse" is-nav>
         <b-navbar-nav>
-            <b-nav-item @click="moveApt">아파트정보</b-nav-item>
-            <b-nav-item @click="moveAbout">About</b-nav-item>
-            <b-nav-item @click="moveQna">Q&A</b-nav-item>
-            <b-nav-item @click="moveNotice">공지사항</b-nav-item>
-            <b-nav-item @click="moveMap">지도 상세 검색</b-nav-item>
-          </b-navbar-nav>
+          <b-nav-item @click="moveApt">아파트정보</b-nav-item>
+          <b-nav-item @click="moveAbout">About</b-nav-item>
+          <b-nav-item @click="moveQna">Q&A</b-nav-item>
+          <b-nav-item @click="moveNotice">공지사항</b-nav-item>
+          <b-nav-item @click="moveMap">지도 상세 검색</b-nav-item>
+        </b-navbar-nav>
       </b-collapse>
 
       <b-collapse id="nav-collapse" is-nav>
@@ -57,13 +57,11 @@ export default {
       this.$store.dispatch('LOGOUT').then(() => this.$router.push('/').catch(() => {}));
 
       window.Kakao.Auth.logout();
-
-      alert(document.cookie);
     },
     moveLogin() {
-      this.$route.push('/member/login');
+      this.$router.push('/member/login');
     },
-    moveJoin() {
+    moveRegist() {
       this.$router.push('/member/regist');
     },
     moveDetail() {
