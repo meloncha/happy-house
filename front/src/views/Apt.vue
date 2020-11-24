@@ -2,7 +2,7 @@
   <b-container class="bv-example-row">
     <b-row>
       <b-col>
-        <h2>아파트 매매 정보</h2>
+        <h1>아파트 매매 정보</h1>
       </b-col>
     </b-row>
     <search-bar @send-dong-code="sendDongCode" />

@@ -5,7 +5,13 @@
 </template>
 
 <script>
-export default {};
+export default {
+  created() {
+    alert('로그아웃 완료!!');
+
+    this.$router.push('/');
+  },
+};
 </script>
 
 <style></style>

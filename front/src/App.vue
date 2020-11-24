@@ -32,22 +32,16 @@ export default {
 </script>
 
 <style>
-/* body {
-  background-image: url('~@/assets/happyhouselogo2.png');
-} */
 #app {
   font-family: Avenir, Helvetica, Arial, sans-serif;
-  -webkit-font-smoothing: antialiased;
-  -moz-osx-font-smoothing: grayscale;
+  /* -webkit-font-smoothing: antialiased; */
+  /* -moz-osx-font-smoothing: grayscale; */
   text-align: center;
   color: #2c3e50;
-  background-color: #d4d4d4;
-  /* background-image: url('~@/assets/bliss.jpg');
-  background-size: contain;
-  background-repeat: no-repeat; */
+  background-color: #f2e9e4;
 }
 
-#nav {
+ #nav {
   padding: 30px;
 }
 
@@ -58,7 +52,7 @@ export default {
 
 #nav a.router-link-exact-active {
   color: #42b983;
-}
+} 
 
 @font-face {
   font-family: "MaplestoryOTFBold";

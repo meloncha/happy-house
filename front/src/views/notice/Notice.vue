@@ -1,88 +1,90 @@
 <template>
-  <div id="app" style="text-align: center;">
-    <h1>공지사항</h1>
-    <input type="text" v-model="keyword" @keyup.enter="search" />
-    <button type="button" class="btn btn-warning" @click="search">검색</button>
-
-    <table class="table table-striped table-bordered">
-      <thead class="table-primary">
-        <tr>
-          <th scope="col">글번호</th>
-          <th scope="col">제목</th>
-          <th scope="col">작성자</th>
-          <th scope="col">작성일</th>
-          <th scope="col">조회수</th>
-        </tr>
-      </thead>
-      <tbody>
-        <tr v-for="(item, index) in notices" :key="index">
-          <th scope="row">{{ index + 1 }}</th>
-          <td>
-            <router-link
-              :to="{ name: 'NoticeDetail', params: { num: item.num } }"
-              >{{ item.title }}</router-link
-            >
-          </td>
-          <td>{{ item.writer }}</td>
-          <td>{{ item.date }}</td>
-          <td>{{ item.readcnt }}</td>
-        </tr>
-      </tbody>
-    </table>
-
-    <button type="button" class="btn btn-primary" @click="move">
-      Q&A 등록
-    </button>
+  <div>
+    <v-container>
+      <v-card-title>
+        <h1>공지사항</h1>
+        <v-spacer></v-spacer>
+        <v-text-field
+          v-model="search"
+          append-icon="mdi-magnify"
+          label="Search"
+          single-line
+          hide-details
+        ></v-text-field>
+        <template v-if="this.$store.getters.getUserId == 'admin'">
+          <div class="col-sm-1">
+            <v-btn @click="move" color="primary" dark class="mb-2">
+              작성하기
+            </v-btn>
+          </div>
+        </template>
+      </v-card-title>
+      <v-data-table
+        :headers="headers"
+        :items="notices"
+        :items-per-page="5"
+        :search="search"
+        :footer-props="{
+          showFirstLastPage: true,
+          firstIcon: 'mdi-arrow-collapse-left',
+          lastIcon: 'mdi-arrow-collapse-right',
+          prevIcon: 'mdi-minus',
+          nextIcon: 'mdi-plus',
+        }"
+      >
+        <template v-slot:body="{ items }">
+          <tbody>
+            <tr v-for="(item, index) in items" :key="index" @click="handleClick(item)">
+              <td>{{ index + 1 }}</td>
+              <td v-html="item.title"></td>
+              <td v-html="item.writer"></td>
+              <td v-html="item.date"></td>
+              <td>{{ item.readcnt }}</td>
+            </tr>
+          </tbody>
+        </template>
+      </v-data-table>
+    </v-container>
   </div>
 </template>
 
 <script>
-import axios from "axios";
+import axios from 'axios';
 
 export default {
   data() {
     return {
-      keyword: "",
-      notices: []
+      keyword: '',
+      search: '',
+      notices: [],
+      headers: [
+        { text: '글번호', value: 'num' },
+        { text: '제목', value: 'title' },
+        { text: '작성자', value: 'writer' },
+        { text: '작성일', value: 'date' },
+        { text: '조회수', value: 'readcnt' },
+      ],
     };
   },
   methods: {
-    search() {
-      axios
-        .get(`http://localhost:7777/happyhouse/notice/search/${this.keyword}`)
-        .then(({ data }) => {
-          this.notices = data;
-        })
-        .catch(err => {
-          console.log(err);
-        });
-    },
     move() {
-      this.$router.push("/notice/regist");
-    }
+      this.$router.push('/notice/regist');
+    },
+    handleClick(item) {
+      this.$router.push('/notice/detail/' + item.num);
+    },
   },
   created() {
     axios
       .get(`http://localhost:7777/happyhouse/notice`)
       .then(({ data }) => {
+        console.log(data);
         this.notices = data;
       })
-      .catch(err => {
+      .catch((err) => {
         console.log(err);
       });
   },
-  watch: {
-    keyword() {
-      axios
-        .get(`http://localhost:7777/happyhouse/notice/search/${this.keyword}`)
-        .then(({ data }) => {
-          this.notices = data;
-        })
-        .catch(err => {
-          console.log(err);
-        });
-    }
-  }
 };
 </script>
 

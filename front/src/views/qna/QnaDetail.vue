@@ -1,6 +1,6 @@
 <template>
   <div>
-    <h1>QnA 등록</h1>
+    <h1>QnA 상세 페이지</h1>
     <br />
     <label for="id">글번호</label>
     <input type="text" class="form-control" id="id" v-model="qna.id" disabled />
@@ -48,7 +48,7 @@
       disabled
     ></textarea>
 
-    <button type="button" class="btn btn-primary" @click="addQna">목록</button>
+    <button type="button" class="btn btn-primary" @click="move">목록</button>
     <button type="button" class="btn btn-warning" @click="updateQna">
       질문 수정
     </button>
@@ -87,18 +87,8 @@ export default {
       });
   },
   methods: {
-    addQna() {
-      axios
-        .post("http://127.0.0.1:7777/happyhouse/qna", this.qna)
-        .then(response => {
-          alert("Qna가 등록되었습니다");
-          console.log(response);
-          this.$router.push("/qna");
-        })
-        .catch(error => {
-          console.log(error);
-        })
-        .finally();
+    move() {
+      this.$router.push('/qna');
     },
     updateQna() {
       this.$router.push("/qna/update/" + this.qna.id);

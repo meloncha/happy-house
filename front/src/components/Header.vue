@@ -10,22 +10,24 @@
 
       <b-collapse id="nav-collapse" is-nav>
         <b-navbar-nav>
-          <b-nav-item @click="moveApt">아파트정보</b-nav-item>
+          <b-nav-item @click="moveApt">Apt</b-nav-item>
           <b-nav-item @click="moveAbout">About</b-nav-item>
           <b-nav-item @click="moveQna">Q&A</b-nav-item>
-          <b-nav-item @click="moveNotice">공지사항</b-nav-item>
+          <b-nav-item @click="moveNotice">Notice</b-nav-item>
           <b-nav-item @click="moveMap">Map</b-nav-item>
           <b-nav-item @click="moveNews">News</b-nav-item>
+          <b-nav-item @click="moveMember" v-if="this.$store.getters.getUserId == 'admin'"
+            >Member</b-nav-item
+          >
         </b-navbar-nav>
       </b-collapse>
 
       <b-collapse id="nav-collapse" is-nav>
         <b-navbar-nav class="ml-auto" v-if="getAccessToken">
-          <b-nav-item
-            ><b-avatar variant="primary" v-text="getUserId.charAt(0).toUpperCase()"></b-avatar
+          <b-nav-item @click="moveDetail"
+            ><b-avatar variant="warning" v-text="getUserId.charAt(0).toUpperCase()"></b-avatar
             >{{ getUserName }}({{ getUserId }})님 환영합니다.</b-nav-item
           >
-          <b-nav-item @click="moveDetail">내정보보기</b-nav-item>
           <b-nav-item @click="onClickLogout">로그아웃</b-nav-item>
         </b-navbar-nav>
         <b-navbar-nav class="ml-auto" v-else>
@@ -55,6 +57,12 @@ export default {
     ...mapGetters(['getAccessToken', 'getUserId', 'getUserName']),
   },
   methods: {
+    intercepter() {
+      if (this.$store.getters.getAccessToken == null) {
+        alert('로그인이 필수 입니다.');
+        this.$router.push('/');
+      }
+    },
     onClickLogout() {
       this.$store.dispatch('LOGOUT').then(() => this.$router.push('/logout').catch(() => {}));
 
@@ -82,21 +90,30 @@ export default {
     },
     moveApt() {
       this.$router.push('/apt');
+      this.intercepter();
     },
     moveNotice() {
       this.$router.push('/notice');
+      this.intercepter();
     },
     moveAbout() {
       this.$router.push('/about');
+      this.intercepter();
     },
     moveQna() {
       this.$router.push('/qna');
+      this.intercepter();
     },
     moveMap() {
       this.$router.push('/map2');
+      this.intercepter();
     },
     moveNews() {
       this.$router.push('/news');
+      this.intercepter();
+    },
+    moveMember() {
+      this.$router.push('/member');
     },
   },
   updated() {

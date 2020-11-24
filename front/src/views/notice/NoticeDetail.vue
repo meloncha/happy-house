@@ -60,6 +60,7 @@ import axios from "axios";
 export default {
   data() {
     return {
+      id: '',
       notice: {
         num: "",
         title: "",
@@ -70,10 +71,10 @@ export default {
     };
   },
   created() {
-    this.notice.num = this.$route.params.num;
+    this.id = this.$route.params.id;
 
     axios
-      .get("http://127.0.0.1:7777/happyhouse/notice/" + this.notice.num)
+      .get("http://127.0.0.1:7777/happyhouse/notice/" + this.id)
       .then(res => {
         this.notice = res.data;
       })

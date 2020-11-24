@@ -1,7 +1,7 @@
 <template>
   <body>
     <div class="jb-box">
-      <video muted autoplay loop>
+      <video loop muted autoplay preload="auto">
         <source src="@/assets/videoplayback3.mp4" type="video/mp4" />
         <strong>Your browser does not support the video tag.</strong>
       </video>
@@ -41,7 +41,7 @@ body {
   margin: 0px;
 }
 .jb-box {
-  width: 100%;
+  width: fit-content;
   height: fit-content;
   overflow: hidden;
   margin: 0px auto;
