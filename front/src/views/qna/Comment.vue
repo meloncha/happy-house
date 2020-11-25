@@ -12,22 +12,6 @@
       v-model="qna.title"
       disabled
     />
-    <label for="writer">작성자</label>
-    <input
-      type="text"
-      class="form-control"
-      id="writer"
-      v-model="qna.writer"
-      disabled
-    />
-    <label for="date">작성일</label>
-    <input
-      type="text"
-      class="form-control"
-      id="date"
-      v-model="qna.date"
-      disabled
-    />
     <label for="content">내용</label>
     <textarea
       v-model="qna.content"

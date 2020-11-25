@@ -95,7 +95,7 @@ const routes = [
     component: MemberLogin,
   },
   {
-    path: '/member/detail',
+    path: '/member/detail/:id',
     name: 'MemberDetail',
     component: MemberDetail,
   },

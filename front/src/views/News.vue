@@ -74,7 +74,7 @@ export default {
   },
   created() {
     axios
-      .get('http://localhost:7777/happyhouse/api/news/' + '부동산')
+      .get('http://localhost:7777/happyhouse/api/news/부동산')
       .then(({ data: { items } }) => {
         // console.log(items);
         this.items = items;

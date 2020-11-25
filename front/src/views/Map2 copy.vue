@@ -1,6 +1,6 @@
 <template>
   <div>
-    <div class="container mt-5" style="background: rgb(255, 253, 214); border-radius: 2em">
+    <div class="container mt-5" style="background: #ffc95c">
       <div class="row" style="margin-top: 20px">
         <div class="col-sm-8">
           <h1>상세검색</h1>
@@ -15,7 +15,9 @@
           />
         </div>
         <div class="col-sm-1">
-          <button class="btn btn-outline-dark" style="float: right" @click="searchApt">검색</button>
+          <button class="btn btn-outline-dark" style="float: right" @click="searchApt">
+            검색
+          </button>
         </div>
       </div>
       <hr />
@@ -23,22 +25,22 @@
       <div class="row">
         <h6 style="margin-left: 30px; margin-right: 20px">주소</h6>
         시도 :
-        <select id="sido" v-model="sido" style="border: 1px solid">
-          <option :value="item.sidoCode" v-for="(item, index) in sidos" :key="index">
-            {{ item.sidoName }}
-          </option>
+        <select id="sido" v-model="sido">
+          <option :value="item.sidoCode" v-for="(item, index) in sidos" :key="index">{{
+            item.sidoName
+          }}</option>
         </select>
         구군 :
-        <select id="gugun" v-model="gugun" style="border: 1px solid">
-          <option :value="item.gugunCode" v-for="(item, index) in guguns" :key="index">
-            {{ item.gugunName }}
-          </option>
+        <select id="gugun" v-model="gugun">
+          <option :value="item.gugunCode" v-for="(item, index) in guguns" :key="index">{{
+            item.gugunName
+          }}</option>
         </select>
         읍면동 :
-        <select id="dong" v-model="dong" style="border: 1px solid">
-          <option :value="item.dong" v-for="(item, index) in dongs" :key="index">
-            {{ item.dong }}
-          </option>
+        <select id="dong" v-model="dong">
+          <option :value="item.dong" v-for="(item, index) in dongs" :key="index">{{
+            item.dong
+          }}</option>
         </select>
       </div>
       <hr />
@@ -48,55 +50,75 @@
           학군
           <div class="custom-control custom-radio custom-control-inline" style="margin-left: 30px">
             <input
-              v-model="checkedSchool"
               type="checkbox"
               class="custom-control-input"
-              id="초등학교"
-              name="초등학교"
-              value="초등학교"
+              id="element"
+              value="element"
+              v-model="school"
             />
-            <label class="custom-control-label" for="초등학교">초등학교</label>
+            <label class="custom-control-label" for="4">초등학교</label>
           </div>
           <div class="custom-control custom-radio custom-control-inline">
-            <input
-              v-model="checkedSchool"
-              type="checkbox"
-              class="custom-control-input"
-              id="중학교"
-              name="중학교"
-              value="중학교"
-            />
-            <label class="custom-control-label" for="중학교">중학교</label>
+            <input type="checkbox" class="custom-control-input" id="5" name="5" value="5" />
+            <label class="custom-control-label" for="5">중학교</label>
           </div>
           <div class="custom-control custom-radio custom-control-inline">
-            <input
-              v-model="checkedSchool"
-              type="checkbox"
-              class="custom-control-input"
-              id="고등학교"
-              name="고등학교"
-              value="고등학교"
-            />
-            <label class="custom-control-label" for="고등학교">고등학교</label>
-            <br />
+            <input type="checkbox" class="custom-control-input" id="6" name="6" value="6" />
+            <label class="custom-control-label" for="6">고등학교</label>
           </div>
         </div>
       </div>
-
+      <hr />
+      <div class="row" style="margin-left: 20px">
+        <div>
+          상권
+          <div class="custom-control custom-radio custom-control-inline" style="margin-left: 30px">
+            <input type="checkbox" class="custom-control-input" id="7" name="7" value="7" />
+            <label class="custom-control-label" for="7">음식점</label>
+          </div>
+          <div class="custom-control custom-radio custom-control-inline">
+            <input type="checkbox" class="custom-control-input" id="8" name="8" value="8" />
+            <label class="custom-control-label" for="8">마트</label>
+          </div>
+          <div class="custom-control custom-radio custom-control-inline">
+            <input type="checkbox" class="custom-control-input" id="9" name="9" value="9" />
+            <label class="custom-control-label" for="9">백화점</label>
+          </div>
+          <div class="custom-control custom-radio custom-control-inline">
+            <input type="checkbox" class="custom-control-input" id="10" name="10" value="10" />
+            <label class="custom-control-label" for="10">문화시설</label>
+          </div>
+          <div class="custom-control custom-radio custom-control-inline">
+            <input type="checkbox" class="custom-control-input" id="11" name="11" value="11" />
+            <label class="custom-control-label" for="11">유흥시설</label>
+          </div>
+        </div>
+      </div>
       <hr />
       <div class="row" style="margin-left: 20px">
         <div>
           교통
           <div class="custom-control custom-radio custom-control-inline" style="margin-left: 30px">
-            <input
-              v-model="checkedStation"
-              type="checkbox"
-              class="custom-control-input"
-              id="지하철"
-              name="지하철"
-              value="지하철"
-            />
-            <label class="custom-control-label" for="지하철">지하철</label>
+            <input type="checkbox" class="custom-control-input" id="12" name="12" value="12" />
+            <label class="custom-control-label" for="12">지하철</label>
+          </div>
+          <div class="custom-control custom-radio custom-control-inline">
+            <input type="checkbox" class="custom-control-input" id="13" name="13" value="13" />
+            <label class="custom-control-label" for="13">버스</label>
+          </div>
+        </div>
+      </div>
+      <hr />
+      <div class="row" style="margin-left: 20px">
+        <div>
+          치안
+          <div class="custom-control custom-radio custom-control-inline" style="margin-left: 30px">
+            <input type="checkbox" class="custom-control-input" id="14" name="14" value="14" />
+            <label class="custom-control-label" for="14">CCTV</label>
+          </div>
+          <div class="custom-control custom-radio custom-control-inline">
+            <input type="checkbox" class="custom-control-input" id="15" name="15" value="15" />
+            <label class="custom-control-label" for="15">범죄율</label>
           </div>
         </div>
       </div>
@@ -144,8 +166,6 @@
       </v-data-table>
     </v-container>
 
-    <br />
-
     <div id="map">
       <hr />
       <div id="map"></div>
@@ -171,6 +191,7 @@ export default {
         { text: '위도', value: 'title' },
         { text: '경도', value: 'title' },
       ],
+
       school: [],
       keyword: '',
       sidos: [],
@@ -180,14 +201,8 @@ export default {
       dongs: [],
       dong: {},
       apts: [],
-      checkedSchool: [],
-      schools: [], //좌표, 학교이름 리턴하는 객체배열 watch
-      checkedStation: [],
-      stations: [],
       positions: [],
-      schoolpositions: [],
       customOverlay: '',
-      check: Boolean,
     };
   },
 
@@ -198,9 +213,9 @@ export default {
 
     const script = document.createElement('script');
     /* global kakao */
+    const API_KEY = 'ee37a1035dfa14e56abd773fe878b0fc';
     script.onload = () => kakao.maps.load(this.initMap);
-    script.src =
-      'http://dapi.kakao.com/v2/maps/sdk.js?autoload=false&appkey=ee37a1035dfa14e56abd773fe878b0fc';
+    script.src = `http://dapi.kakao.com/v2/maps/sdk.js?autoload=false&appkey=${API_KEY}`;
     document.head.appendChild(script);
 
     var container = document.getElementById('map');
@@ -239,22 +254,22 @@ export default {
   },
 
   methods: {
-    // initMap() {
-    //   var container = document.getElementById('map');
-    //   var options = {
-    //     center: new kakao.maps.LatLng(33.450879, 126.56994),
-    //     level: 3,
-    //   };
+    initMap() {
+      var container = document.getElementById('map');
+      var options = {
+        center: new kakao.maps.LatLng(33.450879, 126.56994),
+        level: 3,
+      };
 
-    //   var markerPosition = new kakao.maps.LatLng(33.450879, 126.56994);
+      var markerPosition = new kakao.maps.LatLng(33.450879, 126.56994);
 
-    //   var marker = new kakao.maps.Marker({
-    //     position: markerPosition,
-    //   });
-    //   var map = new kakao.maps.Map(container, options);
-    //   marker.setMap(map);
-    //   map.setMapTypeId(kakao.maps.MapTypeId.kakao);
-    // },
+      var marker = new kakao.maps.Marker({
+        position: markerPosition,
+      });
+      var map = new kakao.maps.Map(container, options);
+      marker.setMap(map);
+      map.setMapTypeId(kakao.maps.MapTypeId.kakao);
+    },
     searchApt() {
       axios
         .get(`http://localhost:7777/happyhouse/map/apt/search/${this.keyword}`)
@@ -268,7 +283,7 @@ export default {
   },
 
   created() {
-    // 처음에 시도정보 가져오기
+    // 시도정보 가져오기
     axios
       .get(`http://localhost:7777/happyhouse/map/sido`)
       .then(({ data }) => {
@@ -292,50 +307,7 @@ export default {
           console.log(err);
         });
     },
-    checkedSchool() {
-      console.log(this.checkedSchool);
-
-      const body = {
-        checkedSchool: this.checkedSchool,
-        dong: this.dong,
-      };
-      console.log(body);
-      axios
-        .post(`http://localhost:7777/happyhouse/map/school`, body)
-        .then(({ data }) => {
-          console.log(data);
-          this.schools = data;
-        })
-        .catch((err) => {
-          console.log(err);
-        });
-    },
-    checkedStation() {
-      //checkedStation 변경되면
-      console.log('checkedStation()들어옴');
-      console.log(this.checkedStation[0]);
-      if (this.checkedStation[0] != null) {
-        this.check = true;
-      } else {
-        this.check = false;
-      }
-      const body2 = {
-        check: this.check,
-        dong: this.dong,
-      };
-      console.log(body2);
-      axios
-        .post(`http://localhost:7777/happyhouse/map/station`, body2) //치하철이 체크 되고 안되고를 보냈음
-        .then(({ data }) => {
-          this.stations = data; //stations 에 지하철 좌표, 역명 받아옴
-        })
-        .catch((err) => {
-          console.log(err);
-        });
-    },
-
     sido() {
-      console.log(this.sido);
       axios
         .get(`http://localhost:7777/happyhouse/map/gugun/${this.sido}`)
         .then(({ data }) => {
@@ -346,7 +318,6 @@ export default {
         });
     },
     gugun() {
-      console.log(this.gugun);
       axios
         .get(`http://localhost:7777/happyhouse/map/dong/${this.gugun}`)
         .then(({ data }) => {
@@ -358,7 +329,6 @@ export default {
     },
     dong() {
       //여기에 지도 실시간 변경
-      console.log(this.dong);
       axios
         .get(`http://localhost:7777/happyhouse/map/apt/${this.dong}`)
         .then(({ data }) => {
@@ -369,121 +339,8 @@ export default {
         .catch((err) => {
           console.log(err);
         });
-      this.checkedSchool = [];
-      this.checkedStation = [];
     },
-    // stations(){
-
-    // }
-    schools() {
-      //스쿨 찍을때 지하철(체크 되어있으면) , 집 모두 같이 표현되어야함
-      console.log('schools()들어옴');
-      console.log(this.schools);
-      // 초중고가 변경 될 때 마다
-      const script = document.createElement('script');
-
-      script.onload = () => kakao.maps.load(this.initMap);
-      script.src =
-        'http://dapi.kakao.com/v2/maps/sdk.js?autoload=false&appkey=ee37a1035dfa14e56abd773fe878b0fc';
-      document.head.appendChild(script);
-
-      var container = document.getElementById('map');
-      var options = {
-        center: new kakao.maps.LatLng(33.450705, 126.570677),
-        level: 3,
-      }; // 지도를 표시할 div
-      var map = new kakao.maps.Map(container, options);
-
-      this.schoolpositions = []; //이전 남아있는 마커 없애기 위해
-      this.schools.forEach((element) => {
-        // 초중고가 변할 때마다 school 값 포지션에 넣어주고 마커 생성
-
-        const schoolposition = {
-          schoolname: element.school_name, //학교 이름
-          latlng: new kakao.maps.LatLng(element.school_lat, element.school_lng), // 경도위도
-          jibun: element.school_jibun, //주소
-        };
-
-        this.schoolpositions = [...this.schoolpositions, schoolposition]; //schoolpositions[{schoolposition객체},{schoolposition객체},{schoolposition객체}]
-      }); //foreach
-      var imageSrc = 'https://www.flaticon.com/svg/static/icons/svg/609/609803.svg';
-      var schoolimage = 'https://www.flaticon.com/premium-icon/icons/svg/3252/3252806.svg';
-      var bounds = new kakao.maps.LatLngBounds();
-
-      for (let i = 0; i < this.positions.length; i++) {
-        // 배열의 좌표들이 잘 보이게 마커를 지도에 추가합니다
-        // marker = new kakao.maps.Marker({ position: this.positions[i].latlng });
-        // marker.setMap(map);
-
-        // LatLngBounds 객체에 좌표를 추가합니다
-        bounds.extend(this.positions[i].latlng);
-      }
-
-      for (var i = 0; i < this.schoolpositions.length; i++) {
-        // 마커 이미지의 이미지 크기 입니ek.
-        let imageSize = new kakao.maps.Size(30, 40);
-
-        // 마커 이미지를 생성합니다
-        let markerImage = new kakao.maps.MarkerImage(schoolimage, imageSize);
-
-        // const customOverlay = new kakao.maps.CustomOverlay({
-        //   position: this.positions[i].latlng,
-        //   content: this.positions[i].content,
-        //   xAnchor: 0.3,
-        //   yAnchor: 0.91,
-        // });
-        // 마커를 생성합니다
-        const marker1 = new kakao.maps.Marker({
-          map: map, // 마커를 표시할 지도
-          position: this.schoolpositions[i].latlng, // 마커를 표시할 위치
-          title: this.schoolpositions[i].schoolname, // 마커의 타이틀, 마커에 마우스를 올리면 타이틀이 표시됩니다
-          image: markerImage, // 마커 이미지
-        });
-
-        // 마커에 클릭이벤트를 등록합니다
-        // kakao.maps.event.addListener(marker, 'click', function() {
-        //   customOverlay.setMap(map);
-        // });
-
-        console.log('초중고 변경 시 집의 학교마커: ' + marker1);
-        marker1.setMap(map);
-      }
-      for (var i = 0; i < this.positions.length; i++) {
-        // 마커 이미지의 이미지 크기 입니ek.
-        let imageSize = new kakao.maps.Size(30, 40);
-
-        // 마커 이미지를 생성합니다
-        let markerImage = new kakao.maps.MarkerImage(imageSrc, imageSize);
-
-        const customOverlay = new kakao.maps.CustomOverlay({
-          position: this.positions[i].latlng,
-          content: this.positions[i].content,
-          xAnchor: 0.3,
-          yAnchor: 0.91,
-        });
-        // 마커를 생성합니다
-        const marker2 = new kakao.maps.Marker({
-          map: map, // 마커를 표시할 지도
-          position: this.positions[i].latlng, // 마커를 표시할 위치
-          title: this.positions[i].title, // 마커의 타이틀, 마커에 마우스를 올리면 타이틀이 표시됩니다
-          image: markerImage, // 마커 이미지
-        });
-
-        // 마커에 클릭이벤트를 등록합니다
-        kakao.maps.event.addListener(marker2, 'click', function() {
-          customOverlay.setMap(map);
-        });
-
-        console.log('초중고 변경 시 집의 마커: ' + marker2);
-        marker2.setMap(map);
-      }
-
-      map.setBounds(bounds); //맵 집의 중앙으로
-      map.setMapTypeId(kakao.maps.MapTypeId.maps); //맵보이게
-    },
-
     apts() {
-      //keyword나 읍면동 변경될 때마다
       const script = document.createElement('script');
 
       script.onload = () => kakao.maps.load(this.initMap);
@@ -560,6 +417,10 @@ export default {
       var bounds = new kakao.maps.LatLngBounds();
 
       for (let i = 0; i < this.positions.length; i++) {
+        // 배열의 좌표들이 잘 보이게 마커를 지도에 추가합니다
+        // marker = new kakao.maps.Marker({ position: this.positions[i].latlng });
+        // marker.setMap(map);
+
         // LatLngBounds 객체에 좌표를 추가합니다
         bounds.extend(this.positions[i].latlng);
       }
@@ -595,9 +456,9 @@ export default {
         });
 
         console.log(marker);
+
         marker.setMap(map);
       }
-      console.log('apt()들어옴');
       map.setBounds(bounds);
 
       map.setMapTypeId(kakao.maps.MapTypeId.maps);

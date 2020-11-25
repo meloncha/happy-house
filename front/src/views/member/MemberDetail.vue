@@ -5,37 +5,13 @@
     <img :src="img" alt="프로필 이미지" height="200" /> <br />
 
     <label for="id">아이디</label>
-    <input
-      type="text"
-      class="form-control"
-      id="id"
-      v-model="member.id"
-      disabled
-    />
+    <input type="text" class="form-control" id="id" v-model="member.id" disabled />
     <label for="title">email</label>
-    <input
-      type="text"
-      class="form-control"
-      id="title"
-      v-model="member.email"
-      disabled
-    />
+    <input type="text" class="form-control" id="title" v-model="member.email" disabled />
     <label for="writer">name</label>
-    <input
-      type="text"
-      class="form-control"
-      id="writer"
-      v-model="member.name"
-      disabled
-    />
+    <input type="text" class="form-control" id="writer" v-model="member.name" disabled />
     <label for="writer">address</label>
-    <input
-      type="text"
-      class="form-control"
-      id="writer"
-      v-model="member.address"
-      disabled
-    />
+    <input type="text" class="form-control" id="writer" v-model="member.address" disabled />
 
     <button type="button" class="btn btn-primary" @click="moveHome">홈</button>
     <button type="button" class="btn btn-warning" @click="updateMember">
@@ -48,63 +24,58 @@
 </template>
 
 <script>
-import axios from "axios";
+import axios from 'axios';
 
 export default {
   data() {
     return {
       member: {
-        id: "",
-        email: "",
-        address: "",
-        name: ""
+        id: '',
+        email: '',
+        address: '',
+        name: '',
       },
-      img: ""
+      img: '',
     };
   },
   created() {
-    this.member.userid = this.$store.getters.getUserId;
-    this.img = localStorage.getItem("img");
-    console.log(this.img);
+    this.member.id = this.$route.params.id;
+    this.img = localStorage.getItem('img');
 
     axios
-      .get(
-        "http://127.0.0.1:7777/happyhouse/member/detail/" + this.member.userid
-      )
-      .then(res => {
+      .get('http://127.0.0.1:7777/happyhouse/member/detail/' + this.member.id)
+      .then((res) => {
         this.member = res.data;
       })
-      .catch(err => {
+      .catch((err) => {
         console.log(err);
       });
   },
   methods: {
     updateMember() {
-      const id = localStorage.getItem("id");
-      this.$router.push("/member/update/" + id);
+      this.$router.push('/member/update/' + this.member.id);
     },
     moveHome() {
-      this.$router.push("/");
+      this.$router.push('/');
     },
     deleteMember() {
-      console.log(this.member.userid, this.member.userpassword);
+      console.log(this.member.id, this.member.pwd);
       axios
-        .post("http://127.0.0.1:7777/happyhouse/member/delete/", this.member)
-        .then(res => {
+        .post('http://127.0.0.1:7777/happyhouse/member/delete/', this.member)
+        .then((res) => {
           const msg = res.data;
-          if (msg == "success") {
-            localStorage.removeItem("id");
-            alert("삭제 성공했습니다.");
+          if (msg == 'success') {
+            alert('삭제 성공했습니다.');
           } else {
-            alert("삭제 실패했습니다.");
+            alert('삭제 실패했습니다.');
           }
-          this.$router.push("/");
+          this.$router.push('/');
         })
-        .catch(err => {
+        .catch((err) => {
           console.log(err);
         });
-    }
-  }
+    },
+  },
 };
 </script>
 
