@@ -1,16 +1,9 @@
 <template>
-  <div>
+  <div style="margin:0 auto; width: 70%; text-align: left">
     <h1>공지사항 등록</h1>
     <br />
     <label for="title">제목</label>
     <input type="text" class="form-control" id="title" v-model="notice.title" />
-    <label for="writer">작성자</label>
-    <input
-      type="text"
-      class="form-control"
-      id="writer"
-      v-model="notice.writer"
-    />
     <label for="content">내용</label>
     <textarea
       v-model="notice.content"
@@ -28,40 +21,41 @@
 </template>
 
 <script>
-import axios from "axios";
+import axios from 'axios';
 
 export default {
   data() {
     return {
       notice: {
-        num: "",
-        title: "",
-        writer: "",
-        content: "",
-        date: ""
-      }
+        num: '',
+        title: '',
+        writer: '',
+        content: '',
+        date: '',
+      },
     };
   },
   methods: {
     move() {
-      this.$router.push("/notice");
+      this.$router.push('/notice');
     },
     addNotice() {
+      this.notice.writer = 'admin';
       axios
-        .post("http://localhost:7777/happyhouse/notice", this.notice)
+        .post('http://localhost:7777/happyhouse/notice', this.notice)
         .then(({ status }) => {
           if (status == 200) {
-            alert("공지사항 등록에 성공하였습니다");
+            alert('공지사항 등록에 성공하였습니다');
           } else {
-            alert("공지사항 등록에 실패하였습니다");
+            alert('공지사항 등록에 실패하였습니다');
           }
-          this.$router.push("/notice");
+          this.$router.push('/notice');
         })
-        .catch(err => {
+        .catch((err) => {
           console.log(err);
         });
-    }
-  }
+    },
+  },
 };
 </script>
 

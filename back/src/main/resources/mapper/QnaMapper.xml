@@ -24,7 +24,7 @@
 		where id = #{id}
 	</update>
 
-	<delete id="qnaDelete" parameterType="QnaDto">
+	<delete id="Delete" parameterType="QnaDto">
 		delete from qna
 		where id = #{id}
 	</delete>

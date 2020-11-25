@@ -23,19 +23,19 @@
       <div class="row">
         <h6 style="margin-left: 30px; margin-right: 20px">주소</h6>
         시도 :
-        <select id="sido" v-model="sido" style="border: 1px solid">
+        <select id="sido" v-model="sido" >
           <option :value="item.sidoCode" v-for="(item, index) in sidos" :key="index">
             {{ item.sidoName }}
           </option>
         </select>
         구군 :
-        <select id="gugun" v-model="gugun" style="border: 1px solid">
+        <select id="gugun" v-model="gugun" >
           <option :value="item.gugunCode" v-for="(item, index) in guguns" :key="index">
             {{ item.gugunName }}
           </option>
         </select>
         읍면동 :
-        <select id="dong" v-model="dong" style="border: 1px solid">
+        <select id="dong" v-model="dong">
           <option :value="item.dong" v-for="(item, index) in dongs" :key="index">
             {{ item.dong }}
           </option>
@@ -82,25 +82,9 @@
           </div>
         </div>
       </div>
+      <hr />
 
-      <hr />
-      <div class="row" style="margin-left: 20px">
-        <div>
-          교통
-          <div class="custom-control custom-radio custom-control-inline" style="margin-left: 30px">
-            <input
-              v-model="checkedStation"
-              type="checkbox"
-              class="custom-control-input"
-              id="지하철"
-              name="지하철"
-              value="지하철"
-            />
-            <label class="custom-control-label" for="지하철">지하철</label>
-          </div>
-        </div>
-      </div>
-      <hr />
+      <br /><br />
     </div>
 
     <v-container>

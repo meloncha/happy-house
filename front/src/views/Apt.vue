@@ -1,27 +1,50 @@
 <template>
-  <b-container class="bv-example-row">
-    <b-row>
-      <b-col>
-        <h1>아파트 매매 정보</h1>
-      </b-col>
-    </b-row>
-    <search-bar @send-dong-code="sendDongCode" />
-    <b-row>
-      <b-col cols="5" align="left">
-        <apt-list :aptList="apts" @select-apt="selectApt" />
-      </b-col>
-      <b-col cols="7">
-        <apt-detail :apt="selectedApt" />
-      </b-col>
-    </b-row>
-  </b-container>
+  <div>
+    <div class="container mt-5" style="background: rgb(255, 253, 214); border-radius: 2em">
+      <div class="row" style="margin-top: 20px">
+        <div class="col-sm-8">
+          <h1>아파트 매매 정보 (2020.10)</h1>
+        </div>
+      </div>
+      <hr />
+
+      <div class="row">
+        <h6 style="margin-left: 30px; margin-right: 20px">주소</h6>
+        시도 :
+        <select id="sido" v-model="sido" style="border: 1px solid">
+          <option :value="item.sidoCode" v-for="(item, index) in sidos" :key="index">
+            {{ item.sidoName }}
+          </option>
+        </select>
+        구군 :
+        <select id="gugun" v-model="gugun" style="border: 1px solid">
+          <option :value="item.gugunCode" v-for="(item, index) in guguns" :key="index">
+            {{ item.gugunName }}
+          </option>
+        </select>
+      </div>
+      <hr />
+
+      <br /><br />
+    </div>
+
+    <b-container class="bv-example-row" style="margin:0 auto; width: 70%;">
+      <b-row>
+        <b-col cols="5" align="left">
+          <apt-list :aptList="apts" @select-apt="selectApt" />
+        </b-col>
+        <b-col cols="7">
+          <apt-detail :apt="selectedApt" />
+        </b-col>
+      </b-row>
+    </b-container>
+  </div>
 </template>
 
 <script>
-import SearchBar from "@/components/SearchBar.vue";
-import AptList from "@/components/AptList.vue";
-import AptDetail from "@/components/AptDetail.vue";
-import axios from "axios";
+import AptList from '@/components/AptList.vue';
+import AptDetail from '@/components/AptDetail.vue';
+import axios from 'axios';
 
 // vue cli enviroment variables 검색
 // 반드시 VUE_APP으로 시작해야 한다.
@@ -55,20 +78,51 @@ import axios from "axios";
 */
 
 export default {
-  name: "Apt",
+  name: 'Apt',
   components: {
-    SearchBar,
     AptList,
-    AptDetail
+    AptDetail,
   },
   data() {
     return {
-      dongCode: "",
+      dongCode: '',
       apts: [],
       // selectedApt: {},
       date: 202010,
-      selectedApt: ""
+      selectedApt: '',
+      sidos: [],
+      sido: {},
+      guguns: [],
+      gugun: {},
+      dongs: [],
+      dong: {},
     };
+  },
+  created() {
+    axios
+      .get(`http://localhost:7777/happyhouse/map/sido`)
+      .then(({ data }) => {
+        this.sidos = data;
+      })
+      .catch((err) => {
+        console.log(err);
+      });
+  },
+  watch: {
+    sido() {
+      console.log(this.sido);
+      axios
+        .get(`http://localhost:7777/happyhouse/map/gugun/${this.sido}`)
+        .then(({ data }) => {
+          this.guguns = data;
+        })
+        .catch((err) => {
+          console.log(err);
+        });
+    },
+    gugun() {
+      this.sendDongCode(this.gugun);
+    },
   },
   methods: {
     sendDongCode(dongCode) {
@@ -76,29 +130,29 @@ export default {
       this.dongCode = dongCode;
 
       const API_KEY =
-        "FoQwxActT1yGsjTvn%2Fa883AmpwaaoG93IZmXH4unLLOSv9lBENc0tNI66%2B9jNe2aGQIGVL9ckDlPz%2BwjaXvwyg%3D%3D";
+        'FoQwxActT1yGsjTvn%2Fa883AmpwaaoG93IZmXH4unLLOSv9lBENc0tNI66%2B9jNe2aGQIGVL9ckDlPz%2BwjaXvwyg%3D%3D';
       const API_URL =
-        "http://openapi.molit.go.kr/OpenAPI_ToolInstallPackage/service/rest/RTMSOBJSvc/getRTMSDataSvcAptTradeDev?LAWD_CD=" +
+        'http://openapi.molit.go.kr/OpenAPI_ToolInstallPackage/service/rest/RTMSOBJSvc/getRTMSDataSvcAptTradeDev?LAWD_CD=' +
         dongCode +
-        "&DEAL_YMD=" +
+        '&DEAL_YMD=' +
         this.date +
-        "&serviceKey=" +
+        '&serviceKey=' +
         API_KEY;
 
       axios
         .get(API_URL)
-        .then(response => {
+        .then((response) => {
           console.log(response);
           this.apts = response.data.response.body.items.item;
         })
-        .catch(error => {
+        .catch((error) => {
           console.log(error);
         });
     },
     selectApt(apt) {
       this.selectedApt = apt;
-    }
-  }
+    },
+  },
 };
 </script>
 

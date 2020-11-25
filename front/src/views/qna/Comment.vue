@@ -1,5 +1,5 @@
 <template>
-  <div>
+  <div style="margin:0 auto; width: 70%; text-align: left">
     <h1>QnA 답변</h1>
     <br />
     <label for="id">글번호</label>

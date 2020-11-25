@@ -1,5 +1,5 @@
 <template>
-  <div>
+  <div style="margin:0 auto; width: 70%; text-align: left">
     <h1>마이페이지</h1>
     <br />
     <img :src="img" alt="프로필 이미지" height="200" /> <br />
@@ -13,11 +13,12 @@
     <label for="writer">address</label>
     <input type="text" class="form-control" id="writer" v-model="member.address" disabled />
 
-    <button type="button" class="btn btn-primary" @click="moveHome">홈</button>
-    <button type="button" class="btn btn-warning" @click="updateMember">
+    <br /><br />
+    <button type="button" class="btn btn-primary" @click="moveHome">홈</button> 
+    <button type="button" class="btn btn-warning" @click="updateMember"> 
       개인정보 수정
     </button>
-    <button type="button" class="btn btn-danger" @click="deleteMember">
+    <button type="button" class="btn btn-danger" @click="deleteMember"> 
       회원 탈퇴
     </button>
   </div>
@@ -79,4 +80,8 @@ export default {
 };
 </script>
 
-<style></style>
+<style>
+button {
+  margin: 10px;
+}
+</style>

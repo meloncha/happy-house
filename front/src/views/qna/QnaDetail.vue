@@ -1,24 +1,21 @@
 <template>
-  <div>
-    <h1>QnA 상세 페이지</h1>
+  <div style="margin:0 auto; width: 70%; text-align: left">
+    <h1 style="text-align: center">QnA 상세 페이지</h1>
     <br />
     <label for="id">글번호</label>
     <input type="text" class="form-control" id="id" v-model="qna.id" disabled />
+
     <label for="title">제목</label>
     <input type="text" class="form-control" id="title" v-model="qna.title" disabled />
     <label for="writer">작성자</label>
     <input type="text" class="form-control" id="writer" v-model="qna.writer" disabled />
     <label for="date">작성일</label>
     <input type="text" class="form-control" id="date" v-model="qna.date" disabled />
-    <label for="content">내용</label>
-    <textarea
-      v-model="qna.content"
-      class="form-control"
-      id="content"
-      cols="30"
-      rows="10"
-      disabled
-    ></textarea>
+
+    <label for="comment">내용</label>
+    <div height="500px" style="backgroundColor: #f7ede2; border: 1px solid">
+      <viewer v-if="qna.content" :initialValue="qna.content" />
+    </div>
 
     <label for="comment">답변</label>
     <textarea
@@ -31,46 +28,29 @@
     ></textarea>
 
     <button type="button" class="btn btn-primary" @click="move">목록</button>
-    <button type="button" class="btn btn-warning" @click="updateQna">
-      질문 수정
-    </button>
-    <button type="button" class="btn btn-danger" @click="deleteQna">
-      질문 삭제
-    </button>
-
-    <div>
-      <h1>게시판 상세보기</h1>
-
-      <div class="AddWrap">
-        <form>
-          <table class="tbAdd">
-            <colgroup>
-              <col width="15%" />
-              <col width="*" />
-            </colgroup>
-            <tr>
-              <th>제목</th>
-              <td>{{ subject }}</td>
-            </tr>
-            <tr>
-              <th>내용</th>
-              <td class="txt_cont" v-html="cont"></td>
-            </tr>
-          </table>
-        </form>
-      </div>
-
-      <div class="btnWrap">
-        <a href="javascript:;" @click="fnList" class="btn">목록</a>
-      </div>
-    </div>
+    <template v-if="qna.writer == this.$store.getters.getUserId">
+      |
+      <button type="button" class="btn btn-warning" @click="updateQna">
+        질문 수정
+      </button>
+      |
+      <button type="button" class="btn btn-danger" @click="deleteQna">
+        질문 삭제
+      </button>
+    </template>
   </div>
 </template>
 
 <script>
 import axios from 'axios';
+import 'codemirror/lib/codemirror.css';
+import '@toast-ui/editor/dist/toastui-editor.css';
+import { Viewer } from '@toast-ui/vue-editor';
 
 export default {
+  components: {
+    Viewer,
+  },
   data() {
     return {
       qna: {
@@ -106,12 +86,8 @@ export default {
       axios
         .delete('http://127.0.0.1:7777/happyhouse/qna/delete/' + this.qna.id)
         .then((res) => {
-          const msg = res.data;
-          if (msg == 'true') {
-            alert('삭제 성공했습니다.');
-          } else {
-            alert('삭제 실패했습니다.');
-          }
+          console.log(res);
+          alert('삭제 성공했습니다.');
           this.$router.push('/qna');
         })
         .catch((err) => {
@@ -123,34 +99,7 @@ export default {
 </script>
 
 <style>
-.tbAdd {
-  border-top: 1px solid #888;
-}
-.tbAdd th,
-.tbAdd td {
-  border-bottom: 1px solid #eee;
-  padding: 5px 0;
-}
-.tbAdd td {
-  padding: 10px 10px;
-  box-sizing: border-box;
-  text-align: left;
-}
-.tbAdd td.txt_cont {
-  height: 300px;
-  vertical-align: top;
-}
-.btnWrap {
-  text-align: center;
-  margin: 20px 0 0 0;
-}
-.btnWrap a {
-  margin: 0 10px;
-}
-.btnAdd {
-  background: #43b984;
-}
-.btnDelete {
-  background: #f00;
+button {
+  margin: 20px;
 }
 </style>

@@ -10,12 +10,12 @@
 
       <b-collapse id="nav-collapse" is-nav>
         <b-navbar-nav>
-          <b-nav-item @click="moveApt">Apt</b-nav-item>
           <b-nav-item @click="moveAbout">About</b-nav-item>
-          <b-nav-item @click="moveQna">Q&A</b-nav-item>
           <b-nav-item @click="moveNotice">Notice</b-nav-item>
-          <b-nav-item @click="moveMap">Map</b-nav-item>
           <b-nav-item @click="moveNews">News</b-nav-item>
+          <b-nav-item @click="moveApt">Apt</b-nav-item>
+          <b-nav-item @click="moveMap">Map</b-nav-item>
+          <b-nav-item @click="moveQna">Q&A</b-nav-item>
           <b-nav-item @click="moveMember" v-if="this.$store.getters.getUserId == 'admin'"
             >Member</b-nav-item
           >
@@ -86,7 +86,7 @@ export default {
       this.$router.push('/member/regist');
     },
     moveDetail() {
-      this.$router.push('/member/detail');
+      this.$router.push('/member/detail/' + this.$store.getters.getUserId);
     },
     moveApt() {
       this.$router.push('/apt');
