@@ -64,9 +64,12 @@ public class MemberDto {
 	public void setAddress(String address) {
 		this.address = address;
 	}
-	
-	
 
-
+	@Override
+	public String toString() {
+		return "MemberDto [id=" + id + ", pwd=" + pwd + ", name=" + name + ", email=" + email + ", phone=" + phone
+				+ ", address=" + address + ", userinfo=" + userinfo + "]";
+	}
+	
 	
 }

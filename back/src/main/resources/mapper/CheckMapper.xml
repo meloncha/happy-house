@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.ssafy.happyhouse.model.dao.CheckDao">
+
+	<select id="selectSchool"
+		resultType="com.ssafy.happyhouse.model.dto.SchoolInfoDto"
+		parameterType="HashMap">
+		select *
+		from school_info
+		where school_grade in (
+		<foreach collection="checkedSchool" item="iii" separator=",">
+			#{iii}
+		</foreach>
+		) and school_jibun like concat('%', #{dong}, '%')
+	</select>
+
+	<select id="selectSubway" parameterType="HashMap"
+		resultType="com.ssafy.happyhouse.model.dto.SubwayInfoDto">
+		select *
+		where subway_jibun like concat('%', #{dong}, '%')
+	</select>
+
+</mapper>

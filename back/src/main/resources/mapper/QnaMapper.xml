@@ -3,30 +3,30 @@
 <mapper namespace="com.ssafy.happyhouse.model.mapper.QnaMapper">
 
 
-<insert id="insertqna" parameterType="QnaDto">
-insert into qna
-(id,writer,title,content,comment)
-VALUES
-(#{id}, #{writer}, #{title},#{content},#{comment})
-</insert>
+	<insert id="insertqna" parameterType="QnaDto">
+		insert into qna
+		(id,writer,title,content,comment)
+		VALUES
+		(#{id}, #{writer}, #{title},#{content},#{comment})
+	</insert>
 
-<select id="selectAll" resultType="QnaDto">
-	select * from qna
-</select>
+	<select id="selectAll" resultType="QnaDto">
+		select * from qna
+	</select>
 
-<select id="selectOne" resultType="QnaDto">
-	select * from qna where id=#{id}
-</select>
+	<select id="selectOne" resultType="QnaDto">
+		select * from qna where id=#{id}
+	</select>
 
 	<update id="qnaModify" parameterType="QnaDto">
 		update qna
-		set title = #{title}, content = #{content}
+		set title = #{title}, content = #{content}, comment = #{comment}
 		where id = #{id}
 	</update>
-	
+
 	<delete id="qnaDelete" parameterType="QnaDto">
 		delete from qna
 		where id = #{id}
 	</delete>
-<!-- C R U D -->
+	<!-- C R U D -->
 </mapper>

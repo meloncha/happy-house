@@ -9,7 +9,10 @@ public class QnaDto {
 	private String comment;
 	private String date;
 	
+	public QnaDto() {}
+
 	public QnaDto(int id, String title, String writer, String content, String comment, String date) {
+		super();
 		this.id = id;
 		this.title = title;
 		this.writer = writer;
@@ -17,15 +20,6 @@ public class QnaDto {
 		this.comment = comment;
 		this.date = date;
 	}
-
-	public String getDate() {
-		return date;
-	}
-
-	public void setDate(String date) {
-		this.date = date;
-	}
-
 
 	public int getId() {
 		return id;
@@ -66,5 +60,15 @@ public class QnaDto {
 	public void setComment(String comment) {
 		this.comment = comment;
 	}
+
+	public String getDate() {
+		return date;
+	}
+
+	public void setDate(String date) {
+		this.date = date;
+	}
+	
+	
 	
 }

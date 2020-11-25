@@ -109,6 +109,7 @@ public class MemberController {
 	@PostMapping(value="/insert", produces="application/json;charset:utf-8")
 	public ResponseEntity<String> insertMember(@RequestBody MemberDto dto) {
 		dto.setUserinfo(0);
+		
 		int result = mService.insertMember(dto);
 		if (result == 0) {
 			return new ResponseEntity<>("failure", HttpStatus.FORBIDDEN);
@@ -119,6 +120,7 @@ public class MemberController {
 	
 	@PutMapping(value="/update", produces="application/json;charset:utf-8")
 	public ResponseEntity<String> updateMember(@RequestBody MemberDto dto) {
+		System.out.println(dto);
 		int result = mService.updateMember(dto);
 		if (result == 0) {
 			return new ResponseEntity<>("failure", HttpStatus.FORBIDDEN);

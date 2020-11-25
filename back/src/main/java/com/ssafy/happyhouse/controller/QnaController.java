@@ -30,7 +30,6 @@ public class QnaController {
 	
 	@GetMapping("/list")
 	public List<QnaDto> list(){
-		System.out.println(service.selectAll());
 		return service.selectAll();
 	}  // QnaDto 타입 리스트로 리턴 함
 	

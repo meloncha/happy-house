@@ -19,8 +19,7 @@
 
 	<update id="updateMember" parameterType="MemberDto">
 		update member
-		set pwd =
-		#{pwd}, email = #{email}, address = #{address}
+		set pwd = #{pwd}, email = #{email}, address = #{address}, name = #{name}, phone = #{phone} 
 		where id = #{id}
 	</update>
 
